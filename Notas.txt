@@ -219,6 +219,9 @@ Seção 1 - Iniciando com VueJS:
         Logo, o que se esperaria, seria que se jogarmos na parte de html a div com mustache que colocamos no index.html e no JavaScript, jogarmos o código que instancia o Vue, o que se espera é o mesmo resultado em que podemos ver pelo live server.
 
     Aula 07 - Explorando um pouco mais a propriedade data:
+        Conteúdo para leitura: https://br.vuejs.org/v2/guide/instance.html#Criando-a-Instancia-Vue
+        Nessa aula, vamos explorar mais à fundo a funcionalidade do atributo "data" da instância vue.
+        
 
     Aula 08 - Methods - Adicionando os nossos primeiros métodos a instância Vue:
 
