@@ -9,6 +9,30 @@
     <title>Document</title>
 </head>
 <body>
-    Teste Live Server.
+    <div id="app">
+        {{ mensagem }}
+    </div>
+
+    <script>
+
+        // options = {
+        //     el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+        //     data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
+        //         mensagem: 'Primeiro template controlado pelo Vue'
+        //     }
+        // }
+
+        // const vm = new Vue(options); // vm = ViewModel. O const vm está sendo atribuído o new Vue para possibilitar a recuperação dessa instância.
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
+                mensagem: 'Primeiro template controlado pelo Vue'
+            }
+        });
+
+        // console.log(vm);
+
+    </script>
+
 </body>
 </html>

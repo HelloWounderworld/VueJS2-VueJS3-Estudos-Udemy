@@ -123,6 +123,88 @@ Seção 1 - Iniciando com VueJS:
         Mas, tome cuidado, isso pode ser que não seja compatível com a versão com que está sendo mostrado na aula de VueJS.
 
     Aula 05 - Primeiro App em Vue (instância de Vue e o double mustache):
+        Arquivo para uma exibição básica de como que funciona em instanciar o Vue, muito parecido com JQuery: secao1-aula05, arquivo pdf.
+        O Objetivo primário de Vue é criar interfaces reativas por meio de componentes.
+        Como estamos falando de interfaces, então trabalharemos com elementos HTML's.
+        E como estamos falando reatividade e componentes, estamos falando de um conjunto de lógica de programação que possibilita isso e escrita em linguagem JavaScript.
+        Logo, no arquivo index.html, vamos implementar a instância do Vue no body via script, de forma análoga feita quando realizamos implementações do código JavaScript em html.
+            <body>
+                Teste Live Server
+
+                <div id="app">
+
+                </div>
+
+                <script>
+
+                    options = {
+                        el: '#app' // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                    }
+
+                    const vm = new Vue(options); // vm = ViewModel. O const vm está sendo atribuído o new Vue para possibilitar a recuperação dessa instância.
+
+                    console.log(vm);
+
+                </script>
+
+            </body>
+        Note que, como está sendo feito na explicação dentre as tags acima, no console.log que está sendo chamado acima, ao olharmos no Console, já é exibido a tal instância em forma de objeto.
+        Dentro desse objeto, percebe-se que já tem o elemento "el" indicando que está capturando a div com id app que havíamos definido acima.
+        Isso indica que já estamos conectando uma instância Vue com um elemento html em específico.
+        Feito isso, podemos definir mais atributos dentro dessa instância Vue que será aplicado no html.
+            <body>
+                <div id="app">
+                    {{ mensagem }}
+                </div>
+
+                <script>
+
+                    options = {
+                        el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                        data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
+                            mensagem: 'Primeiro template controlado pelo Vue'
+                        }
+                    }
+
+                    const vm = new Vue(options); // vm = ViewModel. O const vm está sendo atribuído o new Vue para possibilitar a recuperação dessa instância.
+
+                    console.log(vm);
+
+                </script>
+
+            </body>
+        Note que, acima colocamos o elemento data, donde tem por funcionalidade, guardar as variáveis/atributos reativas e que será trabalhado acima dela.
+        E usamos o mustache "{{}}", para mostrarmos que é possível exibirmos as variáveis/atributos na div em que foi marcada, app.
+        Só que, o usual do cotidiano do Vue, é que ela não seja divido na forma como está expressa acima, em options e em seguida sendo chamado dentro dela.
+        Mas, sim, todo o objeto em que foi definido no option, ser definido diretamente dentro do new Vue.
+            <body>
+                <div id="app">
+                    {{ mensagem }}
+                </div>
+
+                <script>
+
+                    // options = {
+                    //     el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                    //     data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
+                    //         mensagem: 'Primeiro template controlado pelo Vue'
+                    //     }
+                    // }
+
+                    // const vm = new Vue(options); // vm = ViewModel. O const vm está sendo atribuído o new Vue para possibilitar a recuperação dessa instância.
+                    const vm = new Vue({
+                        el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                        data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
+                            mensagem: 'Primeiro template controlado pelo Vue'
+                        }
+                    });
+
+                    // console.log(vm);
+
+                </script>
+
+            </body>
+        Nessa aula, o objetivo foi apenas apresentar a instância do Vue, o new Vue, e os dois atributos principais e que são fundamentais para a aplicação do Vue, o "el" e "data", e tbm o uso da mustache para podermos exibir as variáveis/atributos reativos no html, na div marcada pelo el.
 
     Aula 06 - Iniciando projetos Vue com o JSFiddle e ou Codepen:
 
