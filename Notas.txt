@@ -207,6 +207,16 @@ Seção 1 - Iniciando com VueJS:
         Nessa aula, o objetivo foi apenas apresentar a instância do Vue, o new Vue, e os dois atributos principais e que são fundamentais para a aplicação do Vue, o "el" e "data", e tbm o uso da mustache para podermos exibir as variáveis/atributos reativos no html, na div marcada pelo el.
 
     Aula 06 - Iniciando projetos Vue com o JSFiddle e ou Codepen:
+        Vamos apresentar dois dos principais editores de código voltado para front-end, JSFiddle e CodePen.
+        O CodePen eu já estou familiarizado, pois usei muito ela nas criações de telas usando vue no meu trabalho!
+        No caso, os links dos respectivos editores de códigos:
+            - https://jsfiddle.net/
+            - https://codepen.io/
+        No caso, vamos experimentar em usar o CodePen, já que estou acostumado.
+        Até agora, construímos os arquivos index.html e nela instanciamos o Vue, depois que temos realizado o download desse framework.
+        Note que, ao abrirmos o CodePen, a área de código, depois que vc clica no Start Coding, irá aparecer três áreas para codificação, HTML, CSS e JavaScript.
+        Como foi dito no início, esse editor de Código é voltado para front-end e o que se espera seria que ela suporte quaisquer framework voltado para front-end advinda do código JavaScript, mas claro precisamos especificar qual framework é clicando na engrenagem ao lado da tela JS, pois precisaríamos adicionar um script externo, que será aberto uma modal onde terá uma área "Add External Scripts/Pens", donde vc pode pesquisar qual framework vc queira usar, no nosso caso é Vue2.
+        Logo, o que se esperaria, seria que se jogarmos na parte de html a div com mustache que colocamos no index.html e no JavaScript, jogarmos o código que instancia o Vue, o que se espera é o mesmo resultado em que podemos ver pelo live server.
 
     Aula 07 - Explorando um pouco mais a propriedade data:
 
