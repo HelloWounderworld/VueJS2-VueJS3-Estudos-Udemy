@@ -1,0 +1,213 @@
+Seção 1 - Iniciando com VueJS:
+
+    Aula 01 - Canais de comunicação:
+        O curso de Desenvolvimento Web Avançado com Vue possui um grupo no Facebook. A proposta do grupo é criar uma espaço colaborativo, possibilitando a troca de conhecimentos e experiências entre os alunos do curso, uma ótima oportunidade para conhecer pessoas com os mesmos objetivos profissionais que você!
+
+        Vale lembrar porém que o grupo não é dedicado ao suporte de dúvidas do curso, as dúvidas deverão ser postadas aqui no fórum da Udemy normalmente.
+
+        Link do grupo: https://www.facebook.com/groups/860310584664247
+
+    Aula 02 - Introdução ao Vue.js:
+        Arquivo para visualização: secao1-aula02-introducao_ao_vuejs.pdf
+        O que é framework vuejs?
+            https://www.treinaweb.com.br/blog/o-que-e-o-vue-js
+            https://rockcontent.com/br/talent-blog/vue-js/
+        
+        SPA - Single Page Application:
+            https://www.treinaweb.com.br/blog/o-que-sao-aplicacoes-spa/
+            https://www.devmedia.com.br/ja-ouviu-falar-em-single-page-applications/39009
+
+        Basicamente, o VueJS é um framework JavaScript de front-end.
+
+        Vantagens de se usar VueJS:
+            https://blog.xpeducacao.com.br/vue-js-javascript/
+
+    Aula 03 - Instalando as ferramentas de desenvolvimento local:
+        Conforme o arquivo pdf, secao1-aula03.
+        Vamos instalar os VSCode - Editor de texto de código fonte da Microsoft (https://code.visualstudio.com/download).
+        Extensões:
+            - Vetur
+            - Live Server
+
+    Aula 04 - Iniciando o nosso primeiro front-end com Vue:
+        Primeiro de tudo, vamos baixar os devidos arquivos para essa aula.
+        Conforme o arquivo, secao1-aula04 em pdf, temos três caminhos para podermos iniciar o primeiro front-end com Vue:
+            - Download - Podemos baixar nas versões de desenvolvimento e produção e baixado o mesmo podemos realizar a sua inclusão no seu projeto.
+
+            - Link CDN (Content Delivery Network/Rede de Distribuição de Conteúdo)
+                - Prototipação ou aprendizado - Retorna a versão mais atual do framework
+                - Produção - versão fixo do framework, precisa-se informar qual versão do framework vamos querer utilizar.
+
+            - CLI (Command Line Interface/Interface de Linha de Comando) - via vue cli.
+
+        Para essa aula, vamos aprender a trabalhar com Download e Link CDN do framework.
+        O CLI ficará mais para frente.
+        Vamos visitar o site: https://vuejs.org/
+        Isso irá fazer aparecer uma tela onde terá o texto "The Progressive JavaScript Framework".
+        Em seguida, vc pode colocar a página traduzida em português ou se quiser continuar no inglês, deixo no critério do estudante.
+        Em seguida, clicamos em começar/get Started.
+        Isso te encaminhará para uma tela: https://vuejs.org/guide/introduction.html ou https://br.vuejs.org/v2/guide/index.html
+        Eu, no caso, estou usando o segundo link para esse estudo.
+        Vamos clicar na opção "Instalação", nela vc poderá ver as respectiva versões existentes para vuejs, em Guia.
+        Vimos que, em 2023, já temos uma versão mais recente que é 3.x. 
+        Mas, como a aula da Udemy em que estou assistindo faz o uso do Vuejs da versão 2.x, então iremos trabalhar em cima dele.
+        No caso, aprendendo bem o conceito dessa versão, para a versão mais nova, não haverá tantas dificuldades para realizar as mesmas implementações aprendidas nessas versão.
+        Note que, em "Inclusão Direta com <script>" nela temos a opção de realizarmos o download com a devida instrução da mesma.
+        E logo em baixo disso, temos tbm a opção CDN.
+        Assim, vamos começar por fazer o download do desenvolvimento:
+            - Versão Desenvolvedor
+        Isso irá baixar um arquivo vue.js.
+        Vamos trazer esse arquivo para esse repositório.
+        Vamos, agora, criar um diretório para começarmos a desenvolver, no caso o diretório secao1-VueJS.
+        Dentro desse diretório, vamos colocar o arquivo vue.js, que foi baixado.
+        Bom, já temos o framework pronto dentro desse arquivo vue.js.
+        Dentro desse diretório, vamos criar um novo arquivo index.html e coloquemos o seguinte.
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+            </head>
+            <body>
+
+            </body>
+            </html>
+        Um macete que podemos te falar, seria que basta digitar html que irá aparecer as opções de html's e vc escolhe :5 e dar o enter.
+        Agora, vamos implementar o vue.js para o nosso arquivo index.html, colocando o seguinte código no head.
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <script src="./vue.js"></script>
+                <title>Document</title>
+            </head>
+        Vamos fazer um teste, colocando um texto Teste.
+            <body>
+                Teste
+            </body>
+        Em seguida, vamos clicar com o botão direito do mouse sobre o arquivo index.html e escolher a opção "Open With Live Server", que vem graças à extensão Live Server que foi instalado em uma aula anterior.
+        Isso abrirá o seguinte link:
+            http://127.0.0.1:5500/secao1-VueJS/index.html
+        Donde, o 127.0.0.1 indica o localhost e sendo aberto na porta 5500, cuja porta podemos ver pelo VSCode na parte inferior direito onde está escrito Port.
+        Com isso, vamos conseguir ver em real time, qualquer alteração que eu fizer no index.html, ao ser salvo, imediatamente, a alteração será exibida no broswer.
+        No caso, isso acaba sendo uma forma muito produtiva quando estivermos trabalhando com os testes de front-end.
+        Lembrando, que é fundamental utilizar o Live Server para possibilitar tais tipo de trabalho.
+        Para verificarmos se a aplicação front-end já está bem configurada, podemos ver via o navegador broswer abrindo o seu Console.
+        Nela, vamos colocar Vue e nisso será necessário aparecer a seguinte msg.
+            ƒ Vue (options) {
+                if (!(this instanceof Vue)
+                ) {
+                warn('Vue is a constructor and should be called with the `new` keyword');
+                }
+                this._init(options);
+            }
+        Se apareceu essa msg, significa que o elemento Vue, está sendo reconhecido como objeto o que significa que o ambiente está pronto para realizamos as devidas implementações em Vue.
+
+        Agora, para usarmos o CDN, não tem segredo. No caso, criando o mesmo script como foi feito para a versão de download, será necessário realizar para o CDN tbm como o seguinte.
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <!-- <script src="./vue.js"></script> -->
+                <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+                <title>Document</title>
+            </head>
+            <body>
+                Teste Live Server.
+            </body>
+            </html>
+        Mas, tome cuidado, isso pode ser que não seja compatível com a versão com que está sendo mostrado na aula de VueJS.
+
+    Aula 05 - Primeiro App em Vue (instância de Vue e o double mustache):
+
+    Aula 06 - Iniciando projetos Vue com o JSFiddle e ou Codepen:
+
+    Aula 07 - Explorando um pouco mais a propriedade data:
+
+    Aula 08 - Methods - Adicionando os nossos primeiros métodos a instância Vue:
+
+    Aula 09 - Methods - Recuperando atributos do data:
+
+    Aula 10 - Methods - O contexto léxico das arrow functions e o conflito de nomes:
+
+    Aula 11 - Diretiva v-bind - Realizando o bind de atributos de tags HTML:
+
+    Aula 12 - Diretiva v-bind - Sintaxe sugar e a sobreposição/encademamento de valores:
+
+    Aula 13 - Utilizando expressões no data binding:
+
+    Aula 14 - Diretiva v-on - Manipulando eventos:
+
+    Aula 15 - Methods - Passando parâmetros para os métodos:
+
+    Aula 16 - Diretiva v-on - Capturando os dados do evento ($event):
+
+    Aula 17 - Hands on - Praticando com data, methods, template string, v-bind e v-on:
+
+    Aula 18 - Diretiva v-on - Implemenando modificadores:
+
+    Aula 19 - Selecionando elementos HTML e suas propriedades por ID:
+
+    Aula 20 - Diretiva v-if - Renderiazação condicional de elementos HTML:
+
+    Aula 21 - Diretiva v-show - Exibição condicional de elementos HTML:
+
+    Aula 22 - Diretiva v-html - Injetando elementos HTML:
+
+    Aula 23 - Diretiva v-text - Injetando textos:
+
+    Aula 24 - Diretiva v-once - Evitando que elementos HTML sejam renderizados novamente:
+
+    Aula 25 - Diretiva v-for - Implementando laços de repetição parte 1:
+
+    Aula 26 - Diretiva v-for - Implementando laços de repetição parte 2:
+
+    Aula 27 - Renderização de listas com o atributo-key:
+
+    Aula 28 - Diretiva v-for - Implementando laços de reptição parte 3:
+
+    Aula 29 - Diretiva v-for - Implementando laços de repetição parte 4:
+
+    Aula 30 - Trabalhando com a tag Template para renderização condicional e listas:
+
+    Aula 31 - Trabalhando com propriedades computadas (computed) parte 1:
+
+    Aula 32 - Trabalhando com propriedades computadas (computed) parte 2:
+
+    Aula 33 - Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding):
+
+    Aula 34 - Diretiva V-Model - Praticando um pouco mais o two-way-data binding:
+
+    Aula 35 - Trabalhando com propriedades observadoras (watch):
+
+Seção 2 - Projeto Montando o Lanche:
+
+Seção 3 - Avançando com VueJS:
+
+Seção 4 - Avançando com VueJS3:
+
+Seção 5 - VueCLI, Git e Bitbucket, deploy com Heroku e Vue Devtools:
+
+Seção 6 - Avançando com Vue CLI:
+
+Seção 7 - Extra - Aplicações desktop com Vue3 e Electron:
+
+Seção 8 - Componentes - Do básico ao avançado:
+
+Seção 9 - Formulários e Máscaras de input:
+
+Seção 10 - Diretivas customizadas:
+
+Seção 11 - Mixins - Mesclando funcionalidades entre componentes:
+
+Seção 12 - Vue Router (navegando entre componentes) e JSON Server:
+
+Seção 13 - Animações:
+
+Seção 14 - Gerenciamento de estado centralizado com Vuex:
+
+Seção 15 - Conclusão:
