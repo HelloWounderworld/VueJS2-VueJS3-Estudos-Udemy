@@ -221,7 +221,57 @@ Seção 1 - Iniciando com VueJS:
     Aula 07 - Explorando um pouco mais a propriedade data:
         Conteúdo para leitura: https://br.vuejs.org/v2/guide/instance.html#Criando-a-Instancia-Vue
         Nessa aula, vamos explorar mais à fundo a funcionalidade do atributo "data" da instância vue.
-        
+        Enquanto o "el" ele funciona para ligar uma div com uma instância Vue, o data ela tem por definição, determinar, outras propriedades que será possível acessar por meio de templates strings.
+        No caso, como exemplo, podemos colocar inúmeras propriedades de várias tipos dentro de data.
+        Entenda que o data ela define as propriedades padrões que serão apresentadas no momento em que será acessado a tela e que podem ser dinamizadas.
+        No index.html, onde instanciamos o Vue, colocamos mais propriedade na data para mostrarmos o que é possível colocar nela.
+            const vm = new Vue({
+                el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
+                    mensagem: 'Primeiro template controlado pelo Vue', // String
+                    valorTotal: 150.47, // número
+                    logado: false, // booleano
+                    hobbies: [
+                        'Dormir',
+                        'Estudar Matemática',
+                        'Correr',
+                        'Assistir animes'
+                    ], // array
+                    perfil: {
+                        nome: 'Leonardo Takashi Teramatsu',
+                        site: 'https://github.com/HelloWounderworld',
+                        idade: 26,
+                        cursos: [
+                            { 
+                                nome: 'Revisão JavaScript - Master',
+                                cargaHoraria: '146 horas'
+                            },
+                            { 
+                                nome: 'Revisão Python - Master',
+                                cargaHoraria: '150 horas' 
+                            }
+                        ]
+                    }
+                }
+            });
+        Uma vez definido a propriedade no data, podemos acessar ela dentro da div em que o el está apontando usando a chave mustaches, "{{}}".
+            <div id="app">
+                {{ mensagem }} <br>
+                Valor total: {{ valorTotal }}<br>
+                Logado: {{ logado }}<br>
+                Hobbie: {{ hobbie[0] }}<br>
+                Perfil: {{ perfil }}
+            </div>
+        Agora, note que, a propriedade "perfil" exibdo acima não ela exibe um objeto, porque ele é um objeto que tem dentro dele um objeto.
+        Para isso, precisamos especificar qual elemento dentro desse objeto estamos acessando.
+            <div id="app">
+                {{ mensagem }} <br>
+                Valor total: {{ valorTotal }}<br>
+                Logado: {{ logado }}<br>
+                Hobbie: {{ hobbies[0] }}<br>
+                Perfil: {{ perfil.site }}, {{perfil.cursos[0].nome}}
+            </div>
+        O nome do método que aplicamos para exibir as propriedades definidas no data usando o mustache se chama interpolação.
 
     Aula 08 - Methods - Adicionando os nossos primeiros métodos a instância Vue:
 
