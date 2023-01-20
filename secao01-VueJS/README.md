@@ -1157,7 +1157,8 @@ Outro exemplos para praticarmos seria usando o atributo placeholder que podemos 
 
 Ou seja, podemos usar a diretiva v-bind até para placeholder tbm. 
 
-Obs: Reforço em dar uma lida mais à fundo sobre essa diretiva e explorar mais ainda sobre, pois, não somente a diretiva v-bind, as diretivas no geral, são ferramentas poderosíssimas para os recursos de front-end.
+### Obs: 
+Reforço em dar uma lida mais à fundo sobre essa diretiva e explorar mais ainda sobre, pois, não somente a diretiva v-bind, as diretivas no geral, são ferramentas poderosíssimas para os recursos de front-end.
 
 E não para por aí, na mesma tag, podemos aplicar mais as diretivas v-binds para outros atributos que podem ser usados na mesma tag html.
 
