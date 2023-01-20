@@ -273,9 +273,262 @@ Seção 1 - Iniciando com VueJS:
             </div>
         O nome do método que aplicamos para exibir as propriedades definidas no data usando o mustache se chama interpolação.
 
+        Obs: Na leitura sobre da documentação sobre data, tenho aqui uma abordagem sobre o teste que realizei sobre o Object.freeze.
+            <body>
+                <div id="app">
+                    {{ mensagem }} <br>
+                    Valor total: {{ valorTotal }}<br>
+                    Logado: {{ logado }}<br>
+                    Hobbie: {{ hobbies[0] }}<br>
+                    Perfil: {{ perfil.site }}, {{perfil.cursos[0].nome}}<br>
+
+                    Objeto que não irá se alterar: {{ Gela.congela }}<br>
+                    <button @click="Gela.congela === 'Mudou'">De Bar para Mudar</button><br>
+                    Note que, vc pode clicar quantas vezes quiser no botão "De Bar para Mudar", que o "Bar" não muda de jeito nenhum para Mudar.
+                </div>
+
+                <script>
+
+                    // options = {
+                    //     el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                    //     data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
+                    //         mensagem: 'Primeiro template controlado pelo Vue'
+                    //     }
+                    // }
+
+                    // const vm = new Vue(options); // vm = ViewModel. O const vm está sendo atribuído o new Vue para possibilitar a recuperação dessa instância.
+
+                    var Congela = {
+                        congela: 'Bar'
+                    }
+                    Object.freeze(Congela)
+                    const vm = new Vue({
+                        el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                        data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
+                            mensagem: 'Primeiro template controlado pelo Vue', // String
+                            valorTotal: 150.47, // número
+                            logado: false, // booleano
+                            hobbies: [
+                                'Dormir',
+                                'Estudar Matemática',
+                                'Correr',
+                                'Assistir animes'
+                            ], // array
+                            perfil: {
+                                nome: 'Leonardo Takashi Teramatsu',
+                                site: 'https://github.com/HelloWounderworld',
+                                idade: 26,
+                                cursos: [
+                                    { 
+                                        nome: 'Revisão JavaScript - Master',
+                                        cargaHoraria: '146 horas'
+                                    },
+                                    { 
+                                        nome: 'Revisão Python - Master',
+                                        cargaHoraria: '150 horas' 
+                                    }
+                                ]
+                            },
+                            Gela: Congela
+                        }
+                    });
+
+                    // console.log(vm);
+
+                </script>
+
+            </body>
+
     Aula 08 - Methods - Adicionando os nossos primeiros métodos a instância Vue:
+        Arquivo pdf visual: seca1-aula08
+        Documentação da leitura:
+            https://medium.com/vue-js-o-manual-definitivo/aprenda-a-executar-a%C3%A7%C3%B5es-em-resposta-a-manipula%C3%A7%C3%A3o-de-eventos-m%C3%A9todos-no-vue-js-2-0-b15f0114371f#:~:text=Um%20m%C3%A9todo%20Vue%20%C3%A9%20uma%20fun%C3%A7%C3%A3o%20associada%20%C3%A0%20inst%C3%A2ncia%20Vue.&text=Os%20m%C3%A9todos%20s%C3%A3o%20especialmente%20%C3%BAteis,um%20elemento%20para%20manipular%20eventos.
+            https://br.vuejs.org/v2/guide/instance.html#Criando-a-Instancia-Vue
+            https://br.vuejs.org/v2/api/#methods
+            https://br.vuejs.org/v2/api/#Propriedades-de-Instancia
+        
+        Vamos adicionar métodos na instância vue. No caso, o atributo que iremos aprender a mexer é "methods", de método.
+        Primeiro, vamos criar um diretório para guardar as coisas que temos feito até agora que aborda sobre o atributo data.
+        Criamos um diretório Aula01-07-el-data-mustache e dentro dela mandamos uma cópia do index.html.
+        Não se esqueça de atualizar o script em que está sendo feito a chamada vue.js.
+            <script src="./../vue.js"></script>
+        
+        Agora, vamos trabalhar em cima do index.html.
+        No caso, vamos acrescentar o atributo methods e nela definir uma função somar.
+            <script>
+
+                const vm = new Vue({
+                    el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                    data: {},
+                    methods: {
+                        somar() {
+                            
+                        }
+                    }
+                });
+
+            </script>
+        Note que, definido a função abaixo, ao realizarmos o mustache de forma típica para data
+            <div id="app">
+                {{ somar }}
+            </div>
+
+            <script>
+
+                const vm = new Vue({
+                    el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                    data: {},
+                    methods: {
+                        //somar: function somar() {
+                            //return 4 + 2
+                        //}, // Forma alternativa de executar a função somar usando a sintaxe JavaScript.
+                        somar() {
+                            return 4 + 2
+                        }
+                    }
+                });
+
+            </script>
+        Aparecerá a seguinte msg no broswer.
+            function () { [native code] }
+        Para que seja possível executar um método é o mesmo como executamos as funções JavaScript ou Python, usando "()".
+        No caso, o somar ficaria "somar()" dentro do mustache.
+            <div id="app">
+                {{ somar() }}
+            </div>
+        Podemos, tbm, chamar uma função anônima como seguinte.
+            <div id="app">
+                {{ somar() }}<br>
+                {{ subtrair() }}
+            </div>
+
+            <script>
+
+                const vm = new Vue({
+                    el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                    data: {},
+                    methods: {
+                        //somar: function somar() {
+                            //return 4 + 2
+                        //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+                        somar() {
+                            return 4 + 2
+                        },
+                        subtrair: function() {
+                            return 4 - 2
+                        }
+                    }
+                });
+
+            </script>
+        Ainda assim, tudo estará funcionando de forma correta.
+        Temos uma terceira forma de abordar as funções do método que é usando o arrow function.
+            <div id="app">
+                {{ somar() }}<br>
+                {{ subtrair() }}<br>
+                {{ multiplicar() }}
+            </div>
+
+            <script>
+
+                const vm = new Vue({
+                    el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                    data: {},
+                    methods: {
+                        //somar: function somar() {
+                            //return 4 + 2
+                        //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+                        somar() {
+                            return 4 + 2
+                        },
+                        subtrair: function() { //anônima
+                            return 4 - 2
+                        },
+                        multiplicar: () => { // Arrow function
+                            return 4 * 2
+                        }
+                    }
+                });
+
+            </script>
+        Agora, a forma mais enxuta de definir uma função seria o formato como está sendo executado o somar.
+        Vamos criar um método dividir com essa forma tbm.
+            <div id="app">
+                {{ somar() }}<br>
+                {{ subtrair() }}<br>
+                {{ multiplicar() }}<br>
+                {{ dividir() }}
+            </div>
+
+            <script>
+
+                const vm = new Vue({
+                    el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                    data: {},
+                    methods: {
+                        //somar: function somar() {
+                            //return 4 + 2
+                        //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+                        somar() { // forma mais enxuta de definir os pares de chaves/valor
+                            return 4 + 2
+                        },
+                        subtrair: function() { //anônima
+                            return 4 - 2
+                        },
+                        multiplicar: () => { // Arrow function
+                            return 4 * 2
+                        },
+                        dividir() {
+                            return 4 / 2
+                        }
+                    }
+                });
+
+            </script>
+        Basicamente, a forma mais enxuta está fazendo a referência à forma alternativa de somar que temos acima, em JavaScript.
+        Ou seja, ela só está definindo o nome da função com o mesmo nome em que é chamado dentro da função.
+        Mas, assim como foi visto nos outros exemplos da forma como definimos o método, sempre que formos executar um método que definimos, terá que ser chamado o nome do método e não o nome em que vai dentro da função, como podemos ver.
+            <div id="app">
+                {{ somar() }}<br>
+                {{ subtrair() }}<br>
+                {{ multiplicar() }}<br>
+                {{ dividir() }}<br>
+                {{ numeroAleatorio() }}
+            </div>
+
+            <script>
+
+                const vm = new Vue({
+                    el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                    data: {},
+                    methods: {
+                        //somar: function somar() {
+                            //return 4 + 2
+                        //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+                        somar() { // forma mais enxuta de definir os pares de chaves/valor
+                            return 4 + 2
+                        },
+                        subtrair: function() { //anônima
+                            return 4 - 2
+                        },
+                        multiplicar: () => { // Arrow function
+                            return 4 * 2
+                        },
+                        dividir() {
+                            return 4 / 2
+                        },
+                        numeroAleatorio: function numero() {
+                            return Math.random()
+                        }
+                    }
+                });
+
+            </script>
+        Acima, o método, numeroAleatorio, definido tem como função dentro dela definido com o nome numero.
+        Mas, para executar esse método devemos chamar pelo nome numeroAleatorio, e não o "numero".
 
     Aula 09 - Methods - Recuperando atributos do data:
+        
 
     Aula 10 - Methods - O contexto léxico das arrow functions e o conflito de nomes:
 

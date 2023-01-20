@@ -10,54 +10,39 @@
 </head>
 <body>
     <div id="app">
-        {{ mensagem }} <br>
-        Valor total: {{ valorTotal }}<br>
-        Logado: {{ logado }}<br>
-        Hobbie: {{ hobbies[0] }}<br>
-        Perfil: {{ perfil.site }}, {{perfil.cursos[0].nome}}
+        {{ somar() }}<br>
+        {{ subtrair() }}<br>
+        {{ multiplicar() }}<br>
+        {{ dividir() }}<br>
+        {{ numeroAleatorio() }}
     </div>
 
     <script>
 
-        // options = {
-        //     el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
-        //     data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
-        //         mensagem: 'Primeiro template controlado pelo Vue'
-        //     }
-        // }
-
-        // const vm = new Vue(options); // vm = ViewModel. O const vm está sendo atribuído o new Vue para possibilitar a recuperação dessa instância.
         const vm = new Vue({
             el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
-            data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
-                mensagem: 'Primeiro template controlado pelo Vue', // String
-                valorTotal: 150.47, // número
-                logado: false, // booleano
-                hobbies: [
-                    'Dormir',
-                    'Estudar Matemática',
-                    'Correr',
-                    'Assistir animes'
-                ], // array
-                perfil: {
-                    nome: 'Leonardo Takashi Teramatsu',
-                    site: 'https://github.com/HelloWounderworld',
-                    idade: 26,
-                    cursos: [
-                        { 
-                            nome: 'Revisão JavaScript - Master',
-                            cargaHoraria: '146 horas'
-                        },
-                        { 
-                            nome: 'Revisão Python - Master',
-                            cargaHoraria: '150 horas' 
-                        }
-                    ]
+            data: {},
+            methods: {
+                //somar: function somar() {
+                    //return 4 + 2
+                //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+                somar() { // forma mais enxuta de definir os pares de chaves/valor
+                    return 4 + 2
+                },
+                subtrair: function() { //anônima
+                    return 4 - 2
+                },
+                multiplicar: () => { // Arrow function
+                    return 4 * 2
+                },
+                dividir() {
+                    return 4 / 2
+                },
+                numeroAleatorio: function numero() {
+                    return Math.random()
                 }
             }
         });
-
-        // console.log(vm);
 
     </script>
 

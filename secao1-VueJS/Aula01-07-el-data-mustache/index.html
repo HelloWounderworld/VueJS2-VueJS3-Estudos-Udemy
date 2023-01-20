@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Aula 01 à 07, el, data e mustache</h1>
+        {{ mensagem }} <br>
+        Valor total: {{ valorTotal }}<br>
+        Logado: {{ logado }}<br>
+        Hobbie: {{ hobbies[0] }}<br>
+        Perfil: {{ perfil.site }}, {{perfil.cursos[0].nome}}
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: { // o data ela guarda variáveis/atributos reativos. Além disso, isso possibilita tbm exibir na div marcada pelo elemento, as variáveis/atributos em forma de mustache "{{}}", como está sendo feito para a variável, mensagem.
+                mensagem: 'Primeiro template controlado pelo Vue', // String
+                valorTotal: 150.47, // número
+                logado: false, // booleano
+                hobbies: [
+                    'Dormir',
+                    'Estudar Matemática',
+                    'Correr',
+                    'Assistir animes'
+                ], // array
+                perfil: {
+                    nome: 'Leonardo Takashi Teramatsu',
+                    site: 'https://github.com/HelloWounderworld',
+                    idade: 26,
+                    cursos: [
+                        { 
+                            nome: 'Revisão JavaScript - Master',
+                            cargaHoraria: '146 horas'
+                        },
+                        { 
+                            nome: 'Revisão Python - Master',
+                            cargaHoraria: '150 horas' 
+                        }
+                    ]
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>
