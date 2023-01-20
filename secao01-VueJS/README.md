@@ -755,6 +755,232 @@ Repara que somente no método multiplicar retornou "NaN" (Not a Number), como po
 Isso é devido por conta desse método ser um arrow function, devido ao contexto léxico.
 
 ## Aula 10 - Methods - O contexto léxico das arrow functions e o conflito de nomes:
+Vimos que na aula anterior, as arrow functions temos alguns problemas de contexto léxico para se usar como método, vide o método "multiplicar" criado via arrow function e quando foi recuperado os atributos definidos no data dentro essas arrow functions, ocorreu como resultado "NaN".
+
+Vamos tentar entender melhor a respeito. Para isso, damos um console log dentro desse método multiplicar para vermos o que lhe é retornado.
+
+    const vm = new Vue({
+        el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+        data: {
+            n1: 10,
+            n2: 5
+        },
+        methods: {
+            //somar: function somar() {
+                //return 4 + 2
+            //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+            somar() { // forma mais enxuta de definir os pares de chaves/valor
+                return this.n1 + this.n2
+            },
+            subtrair: function() { //anônima
+                return this.n1 - this.n2
+            },
+            multiplicar: () => { // Arrow function
+                console.log(this)
+                return this.n1 * this.n2 // contexto léxico
+            },
+            dividir() {
+                return this.n1 / this.n2
+            }
+        }
+    });
+
+Rodando o index.html, via Live Server, no broswer e analisamos o console, nela será exibido um conteúdo parecido como o seguinte.
+
+    Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+
+No caso, o que isso significa?
+
+Significa que o operador "this" não faz referência à instância de Vue, mas sim no Window, ou seja, o objeto global do navegador.
+
+No caso, o que significa o problema léxico que está acontecendo na arrow function, seria que dentro dela o this.n1 e this.n2 não existe no escopo global Window. Diferentemente na outras formas de escrita dos métodos, sem ser a arrow function.
+
+Por exemplo, se pegarmos o método enxuto, dividir, e darmos o console.log para o mesmo operador this dentro dele.
+
+    const vm = new Vue({
+        el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+        data: {
+            n1: 10,
+            n2: 5
+        },
+        methods: {
+            //somar: function somar() {
+                //return 4 + 2
+            //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+            somar() { // forma mais enxuta de definir os pares de chaves/valor
+                return this.n1 + this.n2
+            },
+            subtrair: function() { //anônima
+                return this.n1 - this.n2
+            },
+            multiplicar: () => { // Arrow function
+                console.log(this)
+                return this.n1 * this.n2 // contexto léxico
+            },
+            dividir() {
+                console.log(this)
+                return this.n1 / this.n2
+            }
+        }
+    });
+
+Será devolvido a seguinte msg pelo console.
+
+    Vue {_uid: 0, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: Vue, …}
+
+Ou seja, o que indica que, diferente do arrow function, as outras formas de definir a função método, o escopo em que o this ele observa está dentro da instância Vue.
+
+Exametamente, por conta desse comportamento que as arrow functions não são indicadas para criarmos os métodos.
+
+Para se aprofundar um pouco mais no conceito de problemas léxicos atrelado à arrow function siga o seguinte link:
+
+- https://www.freecodecamp.org/news/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881/
+
+Mas temos uma forma de burlar ou aproveitar esse comportamento da arrow function. No caso, vimos que definir um método via arrow function, não é tão eficaz por conta dela apontar para o escopo global Window, em vez do escopo da instância Vue. Mas, agora, se definirmos uma arrow function dentro do método, que foi definido de forma usual? Para qual escopo essa arrow function estaria apontando?
+
+    const vm = new Vue({
+        el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+        data: {
+            n1: 10,
+            n2: 5
+        },
+        methods: {
+            //somar: function somar() {
+                //return 4 + 2
+            //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+            somar() { // forma mais enxuta de definir os pares de chaves/valor
+                return this.n1 + this.n2
+            },
+            subtrair: function() { //anônima
+                return this.n1 - this.n2
+            },
+            multiplicar: () => { // Arrow function
+                console.log(this)
+                return this.n1 * this.n2 // contexto léxico
+            },
+            dividir() {
+                let f = () => {
+                    return 'Teste';
+                }
+                console.log(f())
+                console.log(this)
+                return this.n1 / this.n2
+            }
+        }
+    });
+
+Note que, no método dividir definimos uma arrow function dentro dela e damos o console.log sobre essa arrow function que definimos.
+
+Como resultado disso, o retorno que o console.log deu foi exatamente
+
+    Teste
+
+Ou seja, note que, essa arrow function não está apontando para o escopo global, Window, mas, sim, ela está apontando ao escopo do método dividir que foi definido. Para reforçar mais ainda essa afirmação, como uma prova definitiva, bastaria dar um console.log para o operador this dentro dessa arrow function para verificarmos em qual escopo ela está apontando.
+
+    const vm = new Vue({
+        el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+        data: {
+            n1: 10,
+            n2: 5
+        },
+        methods: {
+            //somar: function somar() {
+                //return 4 + 2
+            //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+            somar() { // forma mais enxuta de definir os pares de chaves/valor
+                return this.n1 + this.n2
+            },
+            subtrair: function() { //anônima
+                return this.n1 - this.n2
+            },
+            multiplicar: () => { // Arrow function
+                console.log(this)
+                return this.n1 * this.n2 // contexto léxico
+            },
+            dividir() {
+                let f = () => {
+                    console.log('Dentro do f: ', this)
+                    return 'Teste';
+                }
+                console.log(f())
+                console.log(this)
+                return this.n1 / this.n2
+            }
+        }
+    });
+
+No caso, o que é devolvido no console.log seria o seguinte.
+
+    Dentro do f:  Vue {_uid: 0, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: Vue, …}
+
+Ou seja, note que, o escopo em que essa arrow function está dentro da instância Vue, pois ela está recuperando o escopo da função.
+
+Agora, um outro detalhe que devemos nos atentar seria sobre as nomenclaturas que atribuímos. No caso, procure não definir nos atributos data o mesmo nome para os métodos em que será definido, e vice-versa.
+
+Por exemplo, vamos definir o seguinte para verificarmos que tipo de erro é devolvido no console.
+
+    const vm = new Vue({
+        el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+        data: {
+            n1: 10,
+            n2: 5,
+            somar: 'teste'
+        },
+        methods: {
+            //somar: function somar() {
+                //return 4 + 2
+            //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+            somar() { // forma mais enxuta de definir os pares de chaves/valor
+                return this.n1 + this.n2
+            },
+            subtrair: function() { //anônima
+                return this.n1 - this.n2
+            },
+            multiplicar: () => { // Arrow function
+                console.log(this)
+                return this.n1 * this.n2 // contexto léxico
+            },
+            dividir() {
+                return this.n1 / this.n2
+            }
+        }
+    });
+
+Se olharmos no console, será devolvido o seguinte.
+
+    vue.js:634 [Vue warn]: Method "somar" has already been defined as a data property.
+
+    vue.js:634 [Vue warn]: Error in render: "TypeError: somar is not a function"
+
+    TypeError: somar is not a function
+    at Proxy.eval (eval at createFunction (vue.js:11649:14), <anonymous>:3:69)
+
+Retiremos apenas o atributo somar, definido em data.
+
+     const vm = new Vue({
+        el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+        data: {
+            n1: 10,
+            n2: 5
+        },
+        methods: {
+            //somar: function somar() {
+                //return 4 + 2
+            //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+            somar() { // forma mais enxuta de definir os pares de chaves/valor
+                return this.n1 + this.n2
+            },
+            subtrair: function() { //anônima
+                return this.n1 - this.n2
+            },
+            multiplicar: () => { // Arrow function
+                return this.n1 * this.n2 // contexto léxico
+            },
+            dividir() {
+                return this.n1 / this.n2
+            }
+        }
+    });
 
 ## Aula 11 - Diretiva v-bind - Realizando o bind de atributos de tags HTML:
 
