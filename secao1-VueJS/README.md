@@ -659,8 +659,100 @@ Acima, o método, numeroAleatorio, definido tem como função dentro dela defini
 Mas, para executar esse método devemos chamar pelo nome numeroAleatorio, e não o "numero".
 
 ## Aula 09 - Methods - Recuperando atributos do data:
-    arquivo pdf para visualizaçao: secao1-aula09
-    
+Arquivo pdf para visualizaçao: 
+
+secao1-aula09
+
+Documentação para leitura na parte de ciclo de vida da instância:
+
+    - https://br.vuejs.org/v2/guide/instance.html
+
+Nessa aula, vamos aprender a como recuperar os atributos do data dentro do methods.
+
+Logo, começamos, primeiro, por definir alguns atributos no data e tirarmos o método criado numeroAleatorio. 
+
+    <div id="app">
+        {{ somar() }}<br>
+        {{ subtrair() }}<br>
+        {{ multiplicar() }}<br>
+        {{ dividir() }}
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                n1: 10,
+                n2: 5
+            },
+            methods: {
+                //somar: function somar() {
+                    //return 4 + 2
+                //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+                somar() { // forma mais enxuta de definir os pares de chaves/valor
+                    return 4 + 2
+                },
+                subtrair: function() { //anônima
+                    return 4 - 2
+                },
+                multiplicar: () => { // Arrow function
+                    return 4 * 2
+                },
+                dividir() {
+                    return 4 / 2
+                }
+            }
+        });
+
+    </script>
+
+Agora, para termos o acesso aos atributos definidos dentro do data para o methods, vamos usar um operador "this".
+
+    <div id="app">
+        {{ somar() }}<br>
+        {{ subtrair() }}<br>
+        {{ multiplicar() }}<br>
+        {{ dividir() }}
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                n1: 10,
+                n2: 5
+            },
+            methods: {
+                //somar: function somar() {
+                    //return 4 + 2
+                //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+                somar() { // forma mais enxuta de definir os pares de chaves/valor
+                    return this.n1 + this.n2
+                },
+                subtrair: function() { //anônima
+                    return this.n1 - this.n2
+                },
+                multiplicar: () => { // Arrow function
+                    return this.n1 * this.n2
+                },
+                dividir() {
+                    return this.n1 / this.n2
+                }
+            }
+        });
+
+    </script>
+
+Repara que somente no método multiplicar retornou "NaN" (Not a Number), como podemos ver
+
+    15
+    5
+    NaN
+    2
+
+Isso é devido por conta desse método ser um arrow function, devido ao contexto léxico.
 
 ## Aula 10 - Methods - O contexto léxico das arrow functions e o conflito de nomes:
 

@@ -13,33 +13,32 @@
         {{ somar() }}<br>
         {{ subtrair() }}<br>
         {{ multiplicar() }}<br>
-        {{ dividir() }}<br>
-        {{ numeroAleatorio() }}
+        {{ dividir() }}
     </div>
 
     <script>
 
         const vm = new Vue({
             el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
-            data: {},
+            data: {
+                n1: 10,
+                n2: 5
+            },
             methods: {
                 //somar: function somar() {
                     //return 4 + 2
                 //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
                 somar() { // forma mais enxuta de definir os pares de chaves/valor
-                    return 4 + 2
+                    return this.n1 + this.n2
                 },
                 subtrair: function() { //anônima
-                    return 4 - 2
+                    return this.n1 - this.n2
                 },
                 multiplicar: () => { // Arrow function
-                    return 4 * 2
+                    return this.n1 * this.n2 // contexto léxico
                 },
                 dividir() {
-                    return 4 / 2
-                },
-                numeroAleatorio: function numero() {
-                    return Math.random()
+                    return this.n1 / this.n2
                 }
             }
         });

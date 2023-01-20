@@ -1,0 +1,1 @@
+# Seção 14 - Gerenciamento de estado centralizado com Vuex:
