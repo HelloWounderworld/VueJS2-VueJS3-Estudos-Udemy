@@ -7,13 +7,18 @@
     <script src="./vue.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
     <title>Document</title>
+    <style>
+        .vermelho {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        {{ somar() }}<br>
-        {{ subtrair() }}<br>
-        {{ multiplicar() }}<br>
-        {{ dividir() }}
+        <a v-bind:href="site">Site</a>
+        <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text" v-bind:placeholder="InstrucaoDePreenchimento" v-bind:value="valor">
+        <input type="checkbox" v-bind:checked="check">
     </div>
 
     <script>
@@ -21,26 +26,13 @@
         const vm = new Vue({
             el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
             data: {
-                n1: 10,
-                n2: 5
+                site: 'https://github.com/HelloWounderworld',
+                cor: 'vermelho',
+                InstrucaoDePreenchimento: 'Placeholder - Diretiva v-bind',
+                valor: 'Entendendo a diretiva v-bind',
+                check: true
             },
-            methods: {
-                //somar: function somar() {
-                    //return 4 + 2
-                //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
-                somar() { // forma mais enxuta de definir os pares de chaves/valor
-                    return this.n1 + this.n2
-                },
-                subtrair: function() { //anônima
-                    return this.n1 - this.n2
-                },
-                multiplicar: () => { // Arrow function
-                    return this.n1 * this.n2 // contexto léxico
-                },
-                dividir() {
-                    return this.n1 / this.n2
-                }
-            }
+            methods: {}
         });
 
     </script>

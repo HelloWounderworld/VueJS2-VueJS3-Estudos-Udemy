@@ -983,6 +983,243 @@ Retiremos apenas o atributo somar, definido em data.
     });
 
 ## Aula 11 - Diretiva v-bind - Realizando o bind de atributos de tags HTML:
+Documentação para leitura:
+
+    https://br.vuejs.org/v2/guide/syntax.html#Diretivas
+
+No caso, vamos aprender a utilizar as diretivas. Existem vários tipos de diretivas. Nessa aula, vamos aprender a usar uma delas, a diretiva v-bind.
+
+Antes de partirmos para o conteúdo, vamos deixar salvo os feitos de até a aula 10. No caso, criamos um diretório, Aula08-10-methods-lexical-context, e dentro dela salvamos uma cópia do index.html no formato em que se encontra no momento. E não se esqueça de arrumar o nível em que estamos importando o arquivo vue.js nos scripts.
+
+    <script src="./../vue.js"></script>
+
+Para melhor compreensão de como isso funciona, vamos ter que utilizar das tags HTML. No caso, em index.html, realizamos o seguinte.
+
+    <div id="app">
+        <a href="{{ site }}">Site</a>
+        <p>Entendendo a diretiva v-bind</p>
+        <input type="text">
+        <input type="checkbox">
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                site: 'https://github.com/HelloWounderworld'
+            },
+            methods: {}
+        });
+
+    </script>
+
+Note que, no formato como está acima, usando a interpolação, ao olharmos pelo console inspecionando o local em que estou chamando o site em que estou definindo, não irá aparecer o site do meu portifólio github.
+
+    <a href="{{ site }}">Site</a>
+
+Seria exatamente por conta disso que a diretiva v-bind é útil, pois ao colocarmos na seguinte forma, sem o mustache
+
+     <div id="app">
+        <a v-bind:href="site">Site</a>
+        <p>Entendendo a diretiva v-bind</p>
+        <input type="text">
+        <input type="checkbox">
+    </div>
+
+E inspecionando a tag "a" para verificarmos o que é devolvido, conseguirmos ver o seguinte
+
+    <a href="https://github.com/HelloWounderworld">Site</a>
+
+Ou seja, a tag 'a' no href, está reconhecendo o conteúdo que foi definido dentro do atributo site em data.
+
+Logo, sempre que for necessário em realizar uma atribuição de valores em atributos de elementos html, precisamos usar a diretiva v-bind para possibilitar o reconhecimento do atributo em que foi definido dentro da instância Vue, no data.
+
+Essa diretiva v-bind, pode ser usado até para classes tbm. No caso, se definirmos o seguinte, veremos que o que atribuímos de valor no atributo cor está sendo aplicado no elemento atributo do html, p
+
+    <div id="app">
+        <a v-bind:href="site">Site</a>
+        <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text">
+        <input type="checkbox">
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                site: 'https://github.com/HelloWounderworld',
+                cor: 'vermelho'
+            },
+            methods: {}
+        });
+
+    </script>
+
+Ao inspecionarmos a tag "p" vamos ver que, de fato, a classe está reconhecendo o que aparece na cor.
+
+    <p class="vermelho">Entendendo a diretiva v-bind</p>
+
+Assim, podemos definir essa classe no style para realmente aplicarmos o tal valor.
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./vue.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+        <title>Document</title>
+        <style>
+            .vermelho {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <a v-bind:href="site">Site</a>
+            <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+            <input type="text">
+            <input type="checkbox">
+        </div>
+
+        <script>
+
+            const vm = new Vue({
+                el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                data: {
+                    site: 'https://github.com/HelloWounderworld',
+                    cor: 'vermelho'
+                },
+                methods: {}
+            });
+
+        </script>
+
+    </body>
+
+Note que, o que isso nos dá como um recurso interessante? Como o atributo color em que definimos no data podemos recuperar ela nos métodos, podemos personalizar a tela alternando em diferentes classes perante às reatividades em que ocorrer por parte do usuário.
+
+    <div id="app">
+        <a v-bind:href="site">Site</a>
+        <button @click="alternar()">Alternando a cor</button>
+        <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text">
+        <input type="checkbox">
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                site: 'https://github.com/HelloWounderworld',
+                cor: 'vermelho'
+            },
+            methods: {
+                alternar() {
+                    if (this.cor === 'vermelho') {
+                        this.cor = 'verde'
+                    } else {
+                        this.cor = 'vermelho'
+                    }
+                }
+            }
+        });
+
+    </script>
+
+É só um mero exemplo inicial. No caso, vamos ver que podemos iterar as classes com v-for, ou até mesmo manipular os valores das classes dentro dos métodos tbm.
+
+Outro exemplos para praticarmos seria usando o atributo placeholder que podemos colocar no input.
+
+    <div id="app">
+        <a v-bind:href="site">Site</a>
+        <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text" v-bind:placeholder="InstrucaoDePreenchimento">
+        <input type="checkbox">
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                site: 'https://github.com/HelloWounderworld',
+                cor: 'vermelho',
+                InstrucaoDePreenchimento: 'Placeholder - Diretiva v-bind'
+            },
+            methods: {}
+        });
+
+    </script>
+
+Ou seja, podemos usar a diretiva v-bind até para placeholder tbm. 
+
+Obs: Reforço em dar uma lida mais à fundo sobre essa diretiva e explorar mais ainda sobre, pois, não somente a diretiva v-bind, as diretivas no geral, são ferramentas poderosíssimas para os recursos de front-end.
+
+E não para por aí, na mesma tag, podemos aplicar mais as diretivas v-binds para outros atributos que podem ser usados na mesma tag html.
+
+    <div id="app">
+        <a v-bind:href="site">Site</a>
+        <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text" v-bind:placeholder="InstrucaoDePreenchimento" v-bind:value="valor">
+        <input type="checkbox">
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                site: 'https://github.com/HelloWounderworld',
+                cor: 'vermelho',
+                InstrucaoDePreenchimento: 'Placeholder - Diretiva v-bind',
+                valor: 'Entendendo a diretiva v-bind'
+            },
+            methods: {}
+        });
+
+    </script>
+
+Com isso, podemos ver aqui que, na mesma tag html, usamos um outro v-bind, donde definimos o atributo valor em data e, pelo recurso value e v-bind aplicados, conseguimos definir um valor padrão de entrada na tag input do html.
+
+Note que, na outra tag html, onde tem o checkbox, temos um atributo checked, que colocado nessa tag, por padrão, ela fica sinalizada.
+
+    <div id="app">
+        <a v-bind:href="site">Site</a>
+        <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text" v-bind:placeholder="InstrucaoDePreenchimento" v-bind:value="valor">
+        <input type="checkbox" checked>
+    </div>
+
+Mas podemos, tbm, aplicar a diretiva v-bind sobre esse atributo html tbm.
+
+    <div id="app">
+        <a v-bind:href="site">Site</a>
+        <p v-bind:class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text" v-bind:placeholder="InstrucaoDePreenchimento" v-bind:value="valor">
+        <input type="checkbox" v-bind:checked="check">
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                site: 'https://github.com/HelloWounderworld',
+                cor: 'vermelho',
+                InstrucaoDePreenchimento: 'Placeholder - Diretiva v-bind',
+                valor: 'Entendendo a diretiva v-bind',
+                check: false
+            },
+            methods: {}
+        });
+
+    </script>
+
+Repara que no atributo check que foi definido em data, podemos ficar alternando entre true e false para verificarmos que o checkbox fica alternando entre marcado e desmarcado.
 
 ## Aula 12 - Diretiva v-bind - Sintaxe sugar e a sobreposição/encademamento de valores:
 

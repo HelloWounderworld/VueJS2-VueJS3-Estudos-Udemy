@@ -1,8 +1,8 @@
 # VueJS2-VueJS3-Estudos-Udemy
-Estudos do framework VueJS. Esse estudo tem como objetivo aprimorar as minhas habilidades de frontEnd sobre esse framework.
+Revisão do framework VueJS. Essa revisão tem como objetivo aprimorar as minhas habilidades de frontEnd sobre esse framework.
 
 ## AVISO:
-Como esse estudo será feito utilizando um repositório Github que é de acesso público. Não coloque, em hipótese alguma, nenhum dado pessoal!!!
+Como essa revisão será feito utilizando um repositório Github, que é de acesso público. Não coloque, em hipótese alguma, nenhum dado pessoal!!!
 
 ## Antes de aprender VueJS:
 Como podemos ver pelo nome, VueJS, ele é um framework voltado para front-end que usa-se da linguagem JavaScript para conseguirmos criar telas de natureza SPA (Single Page Application). Analogamente para outros frameworks de JavaScript como ReactJS. Tal como para back-end o software, NodeJS.
@@ -20,7 +20,7 @@ Usamos as seguintes extensões para VueJS e para possibilitar que rode os arquiv
 - Live Server
 
 ## Referência para consulta:
-Durante o curso da Udemy, em paralelo, foi lido a documentação, https://br.vuejs.org/v2/guide, de acordo com os conceitos estudados para cada assunto da aula.
+Durante o curso da Udemy, em paralelo, foi lido a documentação, https://br.vuejs.org/v2/guide, de acordo com os conceitos revisados para cada assunto da aula.
 
 ### Obrigações:
 Ao final do encerramento de cada seção, realizar uma revisão e criar no readme um relatório dessa revisão de forma clara o que foi aprendido.

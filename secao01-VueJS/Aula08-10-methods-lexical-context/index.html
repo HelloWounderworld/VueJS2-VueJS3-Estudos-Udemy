@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./../vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+    <title>Document</title>
+</head>
+<body>
+    <h1>VueJS - methods and Lexcial Context</h1>
+    <div id="app">
+        {{ somar() }}<br>
+        {{ subtrair() }}<br>
+        {{ multiplicar() }}<br>
+        {{ dividir() }}
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                n1: 10,
+                n2: 5
+            },
+            methods: {
+                //somar: function somar() {
+                    //return 4 + 2
+                //}, // Forma alternativa de executar a função somar usando a sintaxe JAvaScript.
+                somar() { // forma mais enxuta de definir os pares de chaves/valor
+                    return this.n1 + this.n2
+                },
+                subtrair: function() { //anônima
+                    return this.n1 - this.n2
+                },
+                multiplicar: () => { // Arrow function
+                    return this.n1 * this.n2 // contexto léxico
+                },
+                dividir() {
+                    return this.n1 / this.n2
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>
