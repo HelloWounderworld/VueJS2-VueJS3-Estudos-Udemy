@@ -64,6 +64,7 @@ Vamos visitar o site: https://vuejs.org/
 Isso irá fazer aparecer uma tela onde terá o texto "The Progressive JavaScript Framework".
 
 Em seguida, vc pode colocar a página traduzida em português ou se quiser continuar no inglês, deixo no critério do estudante.
+
 Em seguida, clicamos em começar/get Started.
 
 Isso te encaminhará para uma tela: 
@@ -71,21 +72,31 @@ Isso te encaminhará para uma tela:
 - https://vuejs.org/guide/introduction.html ou https://br.vuejs.org/v2/guide/index.html
 
 Eu, no caso, estou usando o segundo link para esse estudo.
+
 Vamos clicar na opção "Instalação", nela vc poderá ver as respectiva versões existentes para vuejs, em Guia.
+
 Vimos que, em 2023, já temos uma versão mais recente que é 3.x. 
 Mas, como a aula da Udemy em que estou assistindo faz o uso do Vuejs da versão 2.x, então iremos trabalhar em cima dele.
+
 No caso, aprendendo bem o conceito dessa versão, para a versão mais nova, não haverá tantas dificuldades para realizar as mesmas implementações aprendidas nessas versão.
+
 Note que, em "Inclusão Direta com <script>" nela temos a opção de realizarmos o download com a devida instrução da mesma.
+
 E logo em baixo disso, temos tbm a opção CDN.
+
 Assim, vamos começar por fazer o download do desenvolvimento:
 
     - Versão Desenvolvedor
 
 Isso irá baixar um arquivo vue.js.
+
 Vamos trazer esse arquivo para esse repositório.
+
 Vamos, agora, criar um diretório para começarmos a desenvolver, no caso o diretório secao1-VueJS.
+
 Dentro desse diretório, vamos colocar o arquivo vue.js, que foi baixado.
 Bom, já temos o framework pronto dentro desse arquivo vue.js.
+
 Dentro desse diretório, vamos criar um novo arquivo index.html e coloquemos o seguinte.
 
     <!DOCTYPE html>
@@ -102,6 +113,7 @@ Dentro desse diretório, vamos criar um novo arquivo index.html e coloquemos o s
     </html>
 
 Um macete que podemos te falar, seria que basta digitar html que irá aparecer as opções de html's e vc escolhe :5 e dar o enter.
+
 Agora, vamos implementar o vue.js para o nosso arquivo index.html, colocando o seguinte código no head.
 
     <head>
@@ -125,10 +137,15 @@ Isso abrirá o seguinte link:
     http://127.0.0.1:5500/secao1-VueJS/index.html
     
 Donde, o 127.0.0.1 indica o localhost e sendo aberto na porta 5500, cuja porta podemos ver pelo VSCode na parte inferior direito onde está escrito Port.
+
 Com isso, vamos conseguir ver em real time, qualquer alteração que eu fizer no index.html, ao ser salvo, imediatamente, a alteração será exibida no broswer.
+
 No caso, isso acaba sendo uma forma muito produtiva quando estivermos trabalhando com os testes de front-end.
+
 Lembrando, que é fundamental utilizar o Live Server para possibilitar tais tipo de trabalho.
+
 Para verificarmos se a aplicação front-end já está bem configurada, podemos ver via o navegador broswer abrindo o seu Console.
+
 Nela, vamos colocar Vue e nisso será necessário aparecer a seguinte msg.
 
     ƒ Vue (options) {
@@ -162,13 +179,17 @@ Mas, tome cuidado, isso pode ser que não seja compatível com a versão com que
 
 ## Aula 05 - Primeiro App em Vue (instância de Vue e o double mustache):
 Arquivo para uma exibição básica de como que funciona em instanciar Vue, muito parecido com JQuery: secao1-aula05, arquivo pdf.
+
 Documentação para leitura: 
 
 https://br.vuejs.org/v2/guide/syntax.html#Interpolacoes
 
 O Objetivo primário de Vue é criar interfaces reativas por meio de componentes.
+
 Como estamos falando de interfaces, então trabalharemos com elementos HTML's.
+
 E como estamos falando reatividade e componentes, estamos falando de um conjunto de lógica de programação que possibilita isso e escrita em linguagem JavaScript.
+
 Logo, no arquivo index.html, vamos implementar a instância do Vue no body via script, de forma análoga feita quando realizamos implementações do código JavaScript em html.
 
     <body>
@@ -193,8 +214,10 @@ Logo, no arquivo index.html, vamos implementar a instância do Vue no body via s
     </body>
 
 Note que, como está sendo feito na explicação dentre as tags acima, no console.log que está sendo chamado acima, ao olharmos no Console, já é exibido a tal instância em forma de objeto.
+
 Dentro desse objeto, percebe-se que já tem o elemento "el" indicando que está capturando a div com id app que havíamos definido acima.
 Isso indica que já estamos conectando uma instância Vue com um elemento html em específico.
+
 Feito isso, podemos definir mais atributos dentro dessa instância Vue que será aplicado no html.
 
     <body>
@@ -221,7 +244,9 @@ Feito isso, podemos definir mais atributos dentro dessa instância Vue que será
 
 Note que, acima colocamos o elemento data, donde tem por funcionalidade, guardar as variáveis/atributos reativas e que será trabalhado acima dela.
 E usamos o mustache "{{}}", para mostrarmos que é possível exibirmos as variáveis/atributos na div em que foi marcada, app.
+
 Só que, o usual do cotidiano do Vue, é que ela não seja divido na forma como está expressa acima, em options e em seguida sendo chamado dentro dela.
+
 Mas, sim, todo o objeto em que foi definido no option, ser definido diretamente dentro do new Vue.
 
     <body>
@@ -256,7 +281,9 @@ Nessa aula, o objetivo foi apenas apresentar a instância do Vue, o new Vue, e o
 
 ## Aula 06 - Iniciando projetos Vue com o JSFiddle e ou Codepen:
 Vamos apresentar dois dos principais editores de código voltado para front-end, JSFiddle e CodePen.
+
 O CodePen eu já estou familiarizado, pois usei muito ela nas criações de telas usando vue no meu trabalho!
+
 No caso, os links dos respectivos editores de códigos:
 
     - https://jsfiddle.net/
@@ -264,9 +291,13 @@ No caso, os links dos respectivos editores de códigos:
     - https://codepen.io/
 
 No caso, vamos experimentar em usar o CodePen, já que estou acostumado.
+
 Até agora, construímos os arquivos index.html e nela instanciamos o Vue, depois que temos realizado o download desse framework.
+
 Note que, ao abrirmos o CodePen, a área de código, depois que vc clica no Start Coding, irá aparecer três áreas para codificação, HTML, CSS e JavaScript.
+
 Como foi dito no início, esse editor de Código é voltado para front-end e o que se espera seria que ela suporte quaisquer framework voltado para front-end advinda do código JavaScript, mas claro precisamos especificar qual framework é clicando na engrenagem ao lado da tela JS, pois precisaríamos adicionar um script externo, que será aberto uma modal onde terá uma área "Add External Scripts/Pens", donde vc pode pesquisar qual framework vc queira usar, no nosso caso é Vue2.
+
 Logo, o que se esperaria, seria que se jogarmos na parte de html a div com mustache que colocamos no index.html e no JavaScript, jogarmos o código que instancia o Vue, o que se espera é o mesmo resultado em que podemos ver pelo live server.
 
 ## Aula 07 - Explorando um pouco mais a propriedade data:
@@ -275,9 +306,13 @@ Conteúdo para leitura:
 https://br.vuejs.org/v2/guide/instance.html#Criando-a-Instancia-Vue
 
 Nessa aula, vamos explorar mais à fundo a funcionalidade do atributo "data" da instância vue.
+
 Enquanto o "el" ele funciona para ligar uma div com uma instância Vue, o data ela tem por definição, determinar, outras propriedades que será possível acessar por meio de templates strings.
+
 No caso, como exemplo, podemos colocar inúmeras propriedades de várias tipos dentro de data.
+
 Entenda que o data ela define as propriedades padrões que serão apresentadas no momento em que será acessado a tela e que podem ser dinamizadas.
+
 No index.html, onde instanciamos o Vue, colocamos mais propriedade na data para mostrarmos o que é possível colocar nela.
 
     const vm = new Vue({
@@ -321,6 +356,7 @@ Uma vez definido a propriedade no data, podemos acessar ela dentro da div em que
     </div>
 
 Agora, note que, a propriedade "perfil" exibdo acima não ela exibe um objeto, porque ele é um objeto que tem dentro dele um objeto.
+
 Para isso, precisamos especificar qual elemento dentro desse objeto estamos acessando.
 
     <div id="app">
@@ -402,7 +438,10 @@ Obs: Na leitura sobre da documentação sobre data, tenho aqui uma abordagem sob
 
 
 ## Aula 08 - Methods - Adicionando os nossos primeiros métodos a instância Vue:
-Arquivo pdf visual: seca1-aula08
+Arquivo pdf visual: 
+
+seca1-aula08
+
 Documentação da leitura:
 
     - https://medium.com/vue-js-o-manual-definitivo/aprenda-a-executar-a%C3%A7%C3%B5es-em-resposta-a-manipula%C3%A7%C3%A3o-de-eventos-m%C3%A9todos-no-vue-js-2-0-b15f0114371f#:~:text=Um%20m%C3%A9todo%20Vue%20%C3%A9%20uma%20fun%C3%A7%C3%A3o%20associada%20%C3%A0%20inst%C3%A2ncia%20Vue.&text=Os%20m%C3%A9todos%20s%C3%A3o%20especialmente%20%C3%BAteis,um%20elemento%20para%20manipular%20eventos.
@@ -414,8 +453,11 @@ Documentação da leitura:
     - https://br.vuejs.org/v2/api/#Propriedades-de-Instancia
 
 Vamos adicionar métodos na instância vue. No caso, o atributo que iremos aprender a mexer é "methods", de método.
+
 Primeiro, vamos criar um diretório para guardar as coisas que temos feito até agora que aborda sobre o atributo data.
+
 Criamos um diretório Aula01-07-el-data-mustache e dentro dela mandamos uma cópia do index.html.
+
 Não se esqueça de atualizar o script em que está sendo feito a chamada vue.js.
 
     <script src="./../vue.js"></script>
@@ -465,6 +507,7 @@ Aparecerá a seguinte msg no broswer.
     function () { [native code] }
 
 Para que seja possível executar um método é o mesmo como executamos as funções JavaScript ou Python, usando "()".
+
 No caso, o somar ficaria "somar()" dentro do mustache.
 
     <div id="app">
@@ -499,6 +542,7 @@ Podemos, tbm, chamar uma função anônima como seguinte.
     </script>
 
 Ainda assim, tudo estará funcionando de forma correta.
+
 Temos uma terceira forma de abordar as funções do método que é usando o arrow function.
 
     <div id="app">
@@ -531,6 +575,7 @@ Temos uma terceira forma de abordar as funções do método que é usando o arro
     </script>
 
 Agora, a forma mais enxuta de definir uma função seria o formato como está sendo executado o somar.
+
 Vamos criar um método dividir com essa forma tbm.
 
     <div id="app">
@@ -567,7 +612,9 @@ Vamos criar um método dividir com essa forma tbm.
     </script>
 
 Basicamente, a forma mais enxuta está fazendo a referência à forma alternativa de somar que temos acima, em JavaScript.
+
 Ou seja, ela só está definindo o nome da função com o mesmo nome em que é chamado dentro da função.
+
 Mas, assim como foi visto nos outros exemplos da forma como definimos o método, sempre que formos executar um método que definimos, terá que ser chamado o nome do método e não o nome em que vai dentro da função, como podemos ver.
 
     <div id="app">
@@ -608,60 +655,61 @@ Mas, assim como foi visto nos outros exemplos da forma como definimos o método,
     </script>
 
 Acima, o método, numeroAleatorio, definido tem como função dentro dela definido com o nome numero.
+
 Mas, para executar esse método devemos chamar pelo nome numeroAleatorio, e não o "numero".
 
 ## Aula 09 - Methods - Recuperando atributos do data:
     arquivo pdf para visualizaçao: secao1-aula09
     
 
-Aula 10 - Methods - O contexto léxico das arrow functions e o conflito de nomes:
+## Aula 10 - Methods - O contexto léxico das arrow functions e o conflito de nomes:
 
-Aula 11 - Diretiva v-bind - Realizando o bind de atributos de tags HTML:
+## Aula 11 - Diretiva v-bind - Realizando o bind de atributos de tags HTML:
 
-Aula 12 - Diretiva v-bind - Sintaxe sugar e a sobreposição/encademamento de valores:
+## Aula 12 - Diretiva v-bind - Sintaxe sugar e a sobreposição/encademamento de valores:
 
-Aula 13 - Utilizando expressões no data binding:
+## Aula 13 - Utilizando expressões no data binding:
 
-Aula 14 - Diretiva v-on - Manipulando eventos:
+## Aula 14 - Diretiva v-on - Manipulando eventos:
 
-Aula 15 - Methods - Passando parâmetros para os métodos:
+## Aula 15 - Methods - Passando parâmetros para os métodos:
 
-Aula 16 - Diretiva v-on - Capturando os dados do evento ($event):
+## Aula 16 - Diretiva v-on - Capturando os dados do evento ($event):
 
-Aula 17 - Hands on - Praticando com data, methods, template string, v-bind e v-on:
+## Aula 17 - Hands on - Praticando com data, methods, template string, v-bind e v-on:
 
-Aula 18 - Diretiva v-on - Implemenando modificadores:
+## Aula 18 - Diretiva v-on - Implemenando modificadores:
 
-Aula 19 - Selecionando elementos HTML e suas propriedades por ID:
+## Aula 19 - Selecionando elementos HTML e suas propriedades por ID:
 
-Aula 20 - Diretiva v-if - Renderiazação condicional de elementos HTML:
+## Aula 20 - Diretiva v-if - Renderiazação condicional de elementos HTML:
 
-Aula 21 - Diretiva v-show - Exibição condicional de elementos HTML:
+## Aula 21 - Diretiva v-show - Exibição condicional de elementos HTML:
 
-Aula 22 - Diretiva v-html - Injetando elementos HTML:
+## Aula 22 - Diretiva v-html - Injetando elementos HTML:
 
-Aula 23 - Diretiva v-text - Injetando textos:
+## Aula 23 - Diretiva v-text - Injetando textos:
 
-Aula 24 - Diretiva v-once - Evitando que elementos HTML sejam renderizados novamente:
+## Aula 24 - Diretiva v-once - Evitando que elementos HTML sejam renderizados novamente:
 
-Aula 25 - Diretiva v-for - Implementando laços de repetição parte 1:
+## Aula 25 - Diretiva v-for - Implementando laços de repetição parte 1:
 
-Aula 26 - Diretiva v-for - Implementando laços de repetição parte 2:
+## Aula 26 - Diretiva v-for - Implementando laços de repetição parte 2:
 
-Aula 27 - Renderização de listas com o atributo-key:
+## Aula 27 - Renderização de listas com o atributo-key:
 
-Aula 28 - Diretiva v-for - Implementando laços de reptição parte 3:
+## Aula 28 - Diretiva v-for - Implementando laços de reptição parte 3:
 
-Aula 29 - Diretiva v-for - Implementando laços de repetição parte 4:
+## Aula 29 - Diretiva v-for - Implementando laços de repetição parte 4:
 
-Aula 30 - Trabalhando com a tag Template para renderização condicional e listas:
+## Aula 30 - Trabalhando com a tag Template para renderização condicional e listas:
 
-Aula 31 - Trabalhando com propriedades computadas (computed) parte 1:
+## Aula 31 - Trabalhando com propriedades computadas (computed) parte 1:
 
-Aula 32 - Trabalhando com propriedades computadas (computed) parte 2:
+## Aula 32 - Trabalhando com propriedades computadas (computed) parte 2:
 
-Aula 33 - Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding):
+## Aula 33 - Diretiva V-Model - Sincronizando inputs com atributos (two-way-data binding):
 
-Aula 34 - Diretiva V-Model - Praticando um pouco mais o two-way-data binding:
+## Aula 34 - Diretiva V-Model - Praticando um pouco mais o two-way-data binding:
 
-Aula 35 - Trabalhando com propriedades observadoras (watch):
+## Aula 35 - Trabalhando com propriedades observadoras (watch):
