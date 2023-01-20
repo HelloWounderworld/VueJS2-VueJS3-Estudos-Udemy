@@ -124,6 +124,7 @@ Seção 1 - Iniciando com VueJS:
 
     Aula 05 - Primeiro App em Vue (instância de Vue e o double mustache):
         Arquivo para uma exibição básica de como que funciona em instanciar o Vue, muito parecido com JQuery: secao1-aula05, arquivo pdf.
+        Documentação para leitura: https://br.vuejs.org/v2/guide/syntax.html#Interpolacoes
         O Objetivo primário de Vue é criar interfaces reativas por meio de componentes.
         Como estamos falando de interfaces, então trabalharemos com elementos HTML's.
         E como estamos falando reatividade e componentes, estamos falando de um conjunto de lógica de programação que possibilita isso e escrita em linguagem JavaScript.
@@ -528,6 +529,7 @@ Seção 1 - Iniciando com VueJS:
         Mas, para executar esse método devemos chamar pelo nome numeroAleatorio, e não o "numero".
 
     Aula 09 - Methods - Recuperando atributos do data:
+        arquivo pdf para visualizaçao: secao1-aula09
         
 
     Aula 10 - Methods - O contexto léxico das arrow functions e o conflito de nomes:
