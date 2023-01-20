@@ -1223,6 +1223,100 @@ Mas podemos, tbm, aplicar a diretiva v-bind sobre esse atributo html tbm.
 Repara que no atributo check que foi definido em data, podemos ficar alternando entre true e false para verificarmos que o checkbox fica alternando entre marcado e desmarcado.
 
 ## Aula 12 - Diretiva v-bind - Sintaxe sugar e a sobreposição/encademamento de valores:
+Documentação para leitura:
+
+    https://br.vuejs.org/v2/guide/syntax.html#Abreviacoes
+
+Dando continuidade sobre a diretiva v-bind, vamos ver sobre a sintaxe sugar e a sobreposição e encadeamento de valores.
+
+No caso, a sintaxe suar é só um modo elegante de dizer na forma mais enxuta em que vc pode usar a diretiva v-bind. No caso, a sua forma seria, em vez de colocar "v-bind:", somente ":".
+
+    <div id="app">
+        <a :href="site">Site</a>
+        <p :class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text" :placeholder="InstrucaoDePreenchimento" :value="valor">
+        <input type="checkbox" :checked="check">
+    </div>
+
+Note que, ao rodarmos o index.html, com Live Server, o código acima, ainda tudo estará funcionando como deveria.
+
+Além disso, temos a sobreposição dos valores de atributos. No caso, um exemplo que temos seria o seguinte
+
+     <a :href="site" href="">Site</a>
+
+Nesse exemplo, que foi aplicado no inde.html, podemos ver que temos duas href e se inspecionarmos qual delas está sendo contada, vc verá que o href vazio que está no lado direito está sendo contado. Ou seja, basicamente, a ordem de prioridade, quando há uma sobreposição de dois atributos iguais sendo usado na mesma tag html, é de direita para esquerda. Como podemos ver acima, o href vazio está tendo mais prioridade para ser considerado do que o href com o v-bind enxuto.
+
+Para verificar isso mais nitidamente, bastaríamos trocar a ordem como segue
+
+    <a href="www.google.com.br" :href="site">Site</a>
+
+Agora, ao inspercionarmos novamente essa tag pelo broswer, veremos que agora o link que será exibido será o que foi definido no atributo site em data, em vez do "www.google.com.br".
+
+Por isso, o que queremos explicar com a sobreposição seria para ficar mais atento, pois existirão cenários em que isso estará acontecendo e a pessoa não ciente disso, poderá se confundir durante a análise do código.
+
+Além da sobreposição, temos o recurso bem curioso chamado encadeamento dos valores. No caso, quando estamos trabalhando com as propriedades de classes, para quem já estudou HTML e CSS, sabemos que em uma dada classe, podemos colocar várias classes, class="c1 c2 c3 c4 ...".
+
+Eventualmente, pode ser que no seu template o elemento html em questão carregue por padrão, de modo estático, uma classe que não a classe que está sendo encaminhado. Como por exemplo
+
+    <p :class="cor" class="negrito">Entendendo a diretiva v-bind</p>
+
+Note que, nesse tipo de cenário, ao inspecionarmos essa tag, vamos ver que as duas classes, automaticamente, foram encadeados.
+
+    <p class="negrito vermelho">Entendendo a diretiva v-bind</p>
+
+No caso, para class, essa regra de sobreposição não se aplica, mas, sim, a de encadeamento. E, por padrão, a classe que ficará na esquerda será sempre as classes que não terá nenhum v-bind, caso haver duas classes em que tenha uma com v-bind ou não, como podemos ver o seguinte.
+
+    <p class="negrito" :class="cor">Entendendo a diretiva v-bind</p>
+
+    <p :class="cor" class="negrito">Entendendo a diretiva v-bind</p>
+
+Independente das duas alternativas acima, ao inspecionarmos, será retornado
+
+    <p class="negrito vermelho">Entendendo a diretiva v-bind</p>
+
+Como um exemplo, podemos definir essa classe negrito para verificarmos a tal ação.
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./vue.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+        <title>Document</title>
+        <style>
+            .vermelho {
+                color: red;
+            }
+            .negrito {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <a :href="site">Site</a>
+            <p class="negrito" :class="cor">Entendendo a diretiva v-bind</p>
+            <input type="text" :placeholder="InstrucaoDePreenchimento" :value="valor">
+            <input type="checkbox" :checked="check">
+        </div>
+
+        <script>
+
+            const vm = new Vue({
+                el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                data: {
+                    site: 'https://github.com/HelloWounderworld',
+                    cor: 'vermelho',
+                    InstrucaoDePreenchimento: 'Placeholder - Diretiva v-bind',
+                    valor: 'Entendendo a diretiva v-bind',
+                    check: true
+                },
+                methods: {}
+            });
+
+        </script>
+
+    </body>
 
 ## Aula 13 - Utilizando expressões no data binding:
 
