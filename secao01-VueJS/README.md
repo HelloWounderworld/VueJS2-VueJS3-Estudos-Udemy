@@ -987,6 +987,8 @@ Documentação para leitura:
 
     https://br.vuejs.org/v2/guide/syntax.html#Diretivas
 
+    https://br.vuejs.org/v2/guide/class-and-style.html
+
 No caso, vamos aprender a utilizar as diretivas. Existem vários tipos de diretivas. Nessa aula, vamos aprender a usar uma delas, a diretiva v-bind.
 
 Antes de partirmos para o conteúdo, vamos deixar salvo os feitos de até a aula 10. No caso, criamos um diretório, Aula08-10-methods-lexical-context, e dentro dela salvamos uma cópia do index.html no formato em que se encontra no momento. E não se esqueça de arrumar o nível em que estamos importando o arquivo vue.js nos scripts.
@@ -1622,6 +1624,48 @@ Obs: Na forma usual do método, dificilmente vc passará, como parâmetro, os at
 E podemos ver que no console, continua sendo exibido o que foi definido, assim como ocorria no código antecessor.
 
 ## Aula 16 - Diretiva v-on - Capturando os dados do evento ($event):
+Documentação para leitura:
+
+    https://br.vuejs.org/v2/guide/events.html#Chamada-Direta-de-Metodos
+
+    https://vuejs.org/guide/essentials/event-handling.html#accessing-event-argument-in-inline-handlers
+
+Até agora usamos o v-on para mostrarmos que ela possibilita reagir sobre os eventos como keyup e click. Existe uma forma de capturarmos esse tal evento, que é usando o $event.
+
+    <div id="app">
+        <input type="text" @keyup="imprimirTexto('Enviando parâmetro', 5, $event)">
+        <button @click="mensagemAlerta($event)">Botão</button>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                xyz: true
+            },
+            methods: {
+                imprimirTexto(t, n, event) {
+                    console.log(t)
+                    console.log(n)
+                    console.log(event)
+                    console.log(this.xyz)
+                },
+                mensagemAlerta(event) {
+                    console.log(event)
+                }
+            }
+        });
+
+    </script>
+
+Reparem que ao clicarmos no botão, "Botão", e colocarmos alguma caractere no input no console foi mostrado o seguinte, respectivamente
+    
+    PointerEvent {isTrusted: true, pointerId: 1, width: 1, height: 1, pressure: 0, …}
+
+    KeyboardEvent {isTrusted: true, key: 'a', code: 'KeyA', location: 0, ctrlKey: false, …}
+
+Indicando que a ação que ocorreu foi por meio do click do mouse e o outro por meio do teclado.
 
 ## Aula 17 - Hands on - Praticando com data, methods, template string, v-bind e v-on:
 

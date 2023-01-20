@@ -18,8 +18,8 @@
 </head>
 <body>
     <div id="app">
-        <input type="text" @keyup="imprimirTexto('Enviando parâmetro', 5)">
-        <button @click="mensagemAlerta()">Botão</button>
+        <input type="text" @keyup="imprimirTexto('Enviando parâmetro', 5, $event)">
+        <button @click="mensagemAlerta($event)">Botão</button>
     </div>
 
     <script>
@@ -30,13 +30,14 @@
                 xyz: true
             },
             methods: {
-                imprimirTexto(t, n) {
+                imprimirTexto(t, n, event) {
                     console.log(t)
                     console.log(n)
+                    console.log(event)
                     console.log(this.xyz)
                 },
-                mensagemAlerta() {
-                    alert('Mensagem de alerta')
+                mensagemAlerta(event) {
+                    console.log(event)
                 }
             }
         });
