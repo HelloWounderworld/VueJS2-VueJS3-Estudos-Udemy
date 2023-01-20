@@ -1463,8 +1463,163 @@ Agora, o que não podemos usar dentro das Mustaches?
 São instruções, por exemplo, os ifs, ou de forma mais direta, bloco de códigos mais complexos. Ou seja, somente expressões mais simples, podemos utilizar dentro das mustaches.
 
 ## Aula 14 - Diretiva v-on - Manipulando eventos:
+Documentação para leitura:
+
+    https://br.vuejs.org/v2/guide/syntax.html#Parametros
+
+    https://br.vuejs.org/v2/guide/events.html#Metodos-em-Manipuladores
+
+Arquivo pdf visual:
+
+    secao1-aula14
+
+Vamos salvar os feitos de até agora criando um diretório, Aula13-data-binding-expressoes e nela colocar uma cópia do arquivo index.html no formato como ela está atualmente e não esquecer de nivelar o nível do script em que acessa o arquivo vue.js para possibilitar a utilização da instância Vue.
+
+Vamos aprender sobre a diretiva "v-on:" ou "@", que tem como funcionalidade em manipular eventos, click, scroll, etc...
+
+Vamos realizando as seguintes modificações do index.html.
+
+    <div id="app">
+        <input type="text" v-on:keyup="imprimirTexto()">
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {},
+            methods: {
+                imprimirTexto() {
+                    console.log('Teste')
+                }
+            }
+        });
+
+    </script>
+
+Note que, a cada caractere inserido no input será exibido, no console, o console.log que definimos.
+
+Vamos praticar mais, então colocamos o seguinte
+
+    <div id="app">
+        <input type="text" v-on:keyup="imprimirTexto()">
+        <button v-on:click="mensagemAlerta()">Botão</button>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {},
+            methods: {
+                imprimirTexto() {
+                    console.log('Teste')
+                },
+                mensagemAlerta() {
+                    alert('Mensagem de alerta')
+                }
+            }
+        });
+
+    </script>
+
+Da mesma forma para diretiva v-bind, a diretiva v-on possui a sua forma enxuta, que seria o "@", como segue
+
+    <div id="app">
+        <input type="text" @keyup="imprimirTexto()">
+        <button @click="mensagemAlerta()">Botão</button>
+    </div>
+
+Vemos que com o formato acima, tudo continua funcionando corretamente.
 
 ## Aula 15 - Methods - Passando parâmetros para os métodos:
+Documentação para leitura:
+
+    https://br.vuejs.org/v2/guide/events.html#Chamada-Direta-de-Metodos
+
+Vamos mostrar que, assim como nas funções JavaScript, podemos passar parâmetros dentro dos métodos que definimos. Como segue
+
+    <div id="app">
+        <input type="text" @keyup="imprimirTexto('Enviando parâmetro')">
+        <button @click="mensagemAlerta()">Botão</button>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {},
+            methods: {
+                imprimirTexto(t) {
+                    console.log(t)
+                },
+                mensagemAlerta() {
+                    alert('Mensagem de alerta')
+                }
+            }
+        });
+
+    </script>
+
+Assim, no formato como está, se colocarmos alguma caractere dentro de input, no console, aparecerá o valor do parâmetro, 'Enviando parâmetro', que inserimos dentro do método imprimirTexto.
+
+No caso, podemos passar quantos parâmetros forem necessários e tipos de parâmetros (string, números, booleanos, objetos, atributos definidos dentro de data, etc...). 
+
+    <div id="app">
+        <input type="text" @keyup="imprimirTexto('Enviando parâmetro', 5, xyz)">
+        <button @click="mensagemAlerta()">Botão</button>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                xyz: true
+            },
+            methods: {
+                imprimirTexto(t, n, x) {
+                    console.log(t)
+                    console.log(n)
+                    console.log(x)
+                },
+                mensagemAlerta() {
+                    alert('Mensagem de alerta')
+                }
+            }
+        });
+
+    </script>
+
+Obs: Na forma usual do método, dificilmente vc passará, como parâmetro, os atributos definidos dentro do data, pois podemos acessar tais atributos definidos no data via this, como havíamos visto antes.
+
+    <div id="app">
+        <input type="text" @keyup="imprimirTexto('Enviando parâmetro', 5)">
+        <button @click="mensagemAlerta()">Botão</button>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                xyz: true
+            },
+            methods: {
+                imprimirTexto(t, n) {
+                    console.log(t)
+                    console.log(n)
+                    console.log(this.xyz)
+                },
+                mensagemAlerta() {
+                    alert('Mensagem de alerta')
+                }
+            }
+        });
+
+    </script>
+
+E podemos ver que no console, continua sendo exibido o que foi definido, assim como ocorria no código antecessor.
 
 ## Aula 16 - Diretiva v-on - Capturando os dados do evento ($event):
 
