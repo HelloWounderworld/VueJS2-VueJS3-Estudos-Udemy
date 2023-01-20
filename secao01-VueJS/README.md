@@ -993,7 +993,7 @@ Antes de partirmos para o conteúdo, vamos deixar salvo os feitos de até a aula
 
     <script src="./../vue.js"></script>
 
-Para melhor compreensão de como isso funciona, vamos ter que utilizar das tags HTML. No caso, em index.html, realizamos o seguinte.
+Para melhor compreensão de como isso funciona, vamos ter que utilizar das tags HTML (as diretivas são aplicáveis somente para as tags html). No caso, em index.html, realizamos o seguinte.
 
     <div id="app">
         <a href="{{ site }}">Site</a>
@@ -1319,6 +1319,148 @@ Como um exemplo, podemos definir essa classe negrito para verificarmos a tal aç
     </body>
 
 ## Aula 13 - Utilizando expressões no data binding:
+Documentação para leitura:
+
+    https://br.vuejs.org/v2/guide/syntax.html#Texto
+
+    https://v1.vuejs.org/guide/syntax.html
+
+Arquivo pdf visual:
+
+    secao1-aula13
+
+Antes de prosseguirmos para aula, vamos criar um diretório, Aula11-12-Diretiva-v-bind e nela salvar os feitos de index.html de até agora sem que esqueçamos de configurar o nível certo para o script.
+
+Até agora vimos dois tipos de data binding, Mustache e v-bind.
+
+Agora, vamos mostrar que nos dois casos acima, podemos escrever expressões.
+
+Para isso, vamos realizar a seguinte modificação no index.html.
+
+    <div id="app">
+        {{ messagem }}
+        <input :value="mensagem">
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                mensagem: 'Expressão'
+            },
+            methods: {}
+        });
+
+    </script>
+
+No caso, o que são expressões?
+
+As expressões são instruções que podem ser calculadas dentro de binds.
+
+No caso, quando realizamos a seguinte conta simples tanto em mustache quanto no atributo com v-bind
+
+    <div id="app">
+        {{ 2 + 2 }}
+        <input :value="2 + 2">
+    </div>
+
+Isso será processado sem problema nenhum.
+
+Um outro exemplo de expressão muito utilizado seria o condicional tenário, como seguinte
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./vue.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+        <title>Document</title>
+        <style>
+            .vermelho {
+                background-color: red;
+            }
+            .azul {
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            {{ 2 + 2 }}
+            <input :value="2 + 2" :class="1 == 1 ? 'vermelho' : estilo">
+        </div>
+
+        <script>
+
+            const vm = new Vue({
+                el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+                data: {
+                    mensagem: 'Expressão',
+                    estilo: 'azul'
+                },
+                methods: {}
+            });
+
+        </script>
+
+    </body>
+
+Note que, na tag input temos a classe com bind em que está sendo aplicado a condicional terminário. No caso, a estrutura
+
+    (condição) ? (se for verdade) : (caso contrário)
+
+Seria se a condiçã está ou não satisfazendo um verdadeiro ou falso.
+
+Para testarmos isso, podemos ficar alternando entre "1 == 1" e "1 == 2", que a cor da caixa input ficará alternando entre vermelho e azul conforme foi definido acima.
+
+Assim, a expressão, condicional ternário, que apresentamos acima é um tipo que podemos usar tanto no Mustache quanto e qualquer diretiva.
+
+Além disso, podemos colocar diretamente um valor booleano.
+
+    <div id="app">
+        {{ 2 + 2 }}
+        <input :value="2 + 2" :class="teste ? 'vermelho' : estilo">
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app', // '#' para selecionar por id | '.' para selecionar por class. Muito similar ao JQuery.
+            data: {
+                mensagem: 'Expressão',
+                estilo: 'azul',
+                teste: false
+            },
+            methods: {}
+        });
+
+    </script>
+
+no lugar de "1 == 1" chamamos o atributo teste que definimos em data e que ela tem um valor booleano. Se ficarmos alternando entre true e false, veremos que a cor do input irá ficar alternando conforme o que foi definido.
+
+Podemos, também, realizar cálculos mais complexos dentro de Mustache, acessar o atributo length, aplicar os métodos
+
+    <div id="app">
+        {{ (2 + 2) / 4 }}
+        <input :value="2 + 2" :class="teste ? 'vermelho' : estilo">
+    </div>
+
+    <div id="app">
+        {{ mensagem.length}}
+        <input :value="2 + 2" :class="teste ? 'vermelho' : estilo">
+    </div>
+
+    <div id="app">
+        {{ mensagem.substr(0,3)}}
+        <input :value="2 + 2" :class="teste ? 'vermelho' : estilo">
+    </div>
+
+Entre outros.
+
+Agora, o que não podemos usar dentro das Mustaches?
+
+São instruções, por exemplo, os ifs, ou de forma mais direta, bloco de códigos mais complexos. Ou seja, somente expressões mais simples, podemos utilizar dentro das mustaches.
 
 ## Aula 14 - Diretiva v-on - Manipulando eventos:
 
