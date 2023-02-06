@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkga.com./vue"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Produtos</h1>
+        <ul>
+            <li v-for="produto in produtos" :key="produto.id">{{ produto.nome }}</li><!--Sempre que possível utilizar o atributo key, a não ser que o remendo local seja o suficiente-->
+        </ul>
+        <button @click="adicionarProduto">Adicionar Produto</button>
+        <button @click="produtos = produtos.slice(0,4)">Substituir array</button>
+        <button @click="substituirProduto">Substituir produto</button>
+        <button @click="cortarArray">Cortar Array</button>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                produtos:[
+                    {id: 1, nome: 'Monitor'},
+                    {id: 2, nome: 'Teclado'},
+                    {id: 3, nome: 'Mouse'},
+                    {id: 4, nome: 'Processador'}
+                ]
+            },
+            methods: {
+                adicionarProduto: function(){
+                    var id = this.produtos.length + 1;
+                    this.produto.push({ id: (tamanho + 1), nome: 'Produto ' + (tamanho + 1)});
+                },
+                substituirProduto: function(event){
+                    var tamanho = this.produtos.length;
+                    var indice = Math.round(tamanho / 2);
+                    var novoProduto = { id: id, nome: 'Produto '+id};
+                    console.log(tamanho,indice);
+                    //this.produtos[indice] = novoProduto;//
+                    //Vue.set(this.produtos,indice, novoProduto);
+                    //this.$set(this.produtos,indice, novoProduto);
+                    this.produtos.splice(indice, 1, novoProduto);
+                },
+                cortarArray: function(event){
+                   // this.produtos.length = 2; // Não reativo
+                    this.produtos.splice(2, 1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

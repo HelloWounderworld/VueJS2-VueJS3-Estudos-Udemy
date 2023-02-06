@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p>Nome: {{ nomeCompleto }}</p>
+        <button @click="alterarNome">Alterar nome</button>
+    </div>  
+    <!--Os watchers podem ser usado em uma operação assíncrona e em operações que não exige algu retorno/volta.-->
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                nomeCompleto: 'Leonardo Takashi Teramatsu'
+            },
+            watch: {
+                nomeCompleto: function(novoNomeCompleto, antigoNomeCompleto){
+                    setTimeout(function() {
+                        var vm = this;
+                        vm.nomeCompleto = 'Nome resetado';
+                    }, 3000);
+                }
+            },
+            methods: {
+                alterarNome: function(event){
+                    this.nomeCompleto = 'Teramatsu Leonardo Takashi';
+                }
+            }
+        })
+    </script> 
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VueJS - Guia completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h1>Produtos:</h1>
+        <ul>
+            <li v-for="produto in produtos" :key="produto.id">{{ produto.nome }}</li>
+        </ul>
+        <button @click="adicionarProduto">Adicionar produto</button>
+        <button @click="produtos = produtos.slice(0, 4)">Substituir array</button>
+        <button @click="substituirProduto">Substituir produto</button>
+        <button @click="cortarArray">Cortar array</button>
+    </div>
+
+    <script type="text/javascript">
+    
+        new Vue({
+            el: '#app',
+            data: {
+                produtos: [
+                    { id: 1, nome: 'Monitor' },
+                    { id: 2, nome: 'Teclado' },
+                    { id: 3, nome: 'Mouse' },
+                    { id: 4, nome: 'Processador' }
+                ]
+            },
+            methods: {
+                adicionarProduto: function(event) {
+                    var id = this.produtos.length + 1;
+                    this.produtos.push({ id: id, nome: 'Produto ' + id });
+                },
+                substituirProduto: function(event) {
+                    var tamanho = this.produtos.length;
+                    var indice = Math.round(tamanho / 2);
+                    var novoProduto = { id: (tamanho + 1), nome: 'Produto ' + (tamanho + 1) };
+                    console.log(tamanho, indice);
+                    // this.produtos[indice] = novoProduto; // NÃo reativo
+                    // Vue.set(this.produtos, indice, novoProduto);
+                    // this.$set(this.produtos, indice, novoProduto);
+                    this.produtos.splice(indice, 1, novoProduto);
+                },
+                cortarArray: function(event) {
+                    // this.produtos.length = 2; // NÃO reativo
+                    this.produtos.splice(2);
+                }
+            }
+        });
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,24 @@
+Aula 1 - Para introdução à esse proejto final, é necessário ter uma noção dos seguintes recursos:
+
+    - https://v1.prisma.io/docs/1.34/understand-prisma/prisma-introduction-what-why-how-j9ff/#what-is-prisma
+
+    - https://v1.prisma.io/docs/1.34/understand-prisma/prisma-introduction-what-why-how-j9ff/#why-use-prisma
+
+    - https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e
+
+Aula 2 - Guia de instalação do docker - Já está salvo no meu drive
+
+Aula 3 - Precisamos criar um Prisma Server e o banco de dados PostgreSQL para, finalmente, conseguirmos rodar o Docker no local.
+
+    Atualizando o docker-compose: (Seguindo tudo que está em (*))
+        - prismagraphql/prisma: 1.28 -> 1.34
+
+    - https://docs.docker.com/get-docker/
+    - https://docs.docker.com/desktop/mac/permission-requirements/
+    - https://hub.docker.com/r/prismagraphql/prisma (*)
+    - Comando para rodar: docker-compose up -d
+    - Para verficar os diretórios: docker ps
+
+Precisa verificar o que está acontecendo, pois estou seguindo os mesmos passos que é dado na aula, mas não estou conseguindo rodar localmente.
+Problema resolvido, no caso, para poder rodar o docker-compose precisa rodar primeiro o container do docker (docker run -d -p 80:80 docker/getting-started) no terminal
+dentro do diretório que vc está trabalhando para depois de criado o docker-compose.yml rodar o docker-compose up -d pelo terminal

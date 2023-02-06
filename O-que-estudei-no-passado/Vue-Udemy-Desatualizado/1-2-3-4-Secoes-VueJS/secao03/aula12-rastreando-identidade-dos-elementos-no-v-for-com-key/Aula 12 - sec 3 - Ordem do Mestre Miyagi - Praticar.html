@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkga.com./vue"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Produtos</h1>
+        <ul>
+            <li v-for="produto in produtos">{{ produto.nome }}</li>
+        </ul>
+        <ul>
+            <li v-for="produto in produtos" :key="produto.id">{{ produto.nome }}</li><!--Sempre que possível utilizar o atributo key, a não ser que o remendo local seja o suficiente-->
+        </ul>
+        <button @click="produto.reverse()">Inverter Lista</button>
+        <button @click="addProduto">Add Produto</button>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                produtos:[
+                    {id: 1, nome: 'Monitor'},
+                    {id: 2, nome: 'Teclado'},
+                    {id: 3, nome: 'Mouse'},
+                    {id: 4, nome: 'Processador'}
+                ]
+            },
+            methods: {
+                addProduto: function(){
+                    var id = this.produtos.length + 1;
+                    this.produto.push({ id: id, nome: 'Produto' + id});
+                }
+            }
+        })
+    </script>
+</body>
+</html>

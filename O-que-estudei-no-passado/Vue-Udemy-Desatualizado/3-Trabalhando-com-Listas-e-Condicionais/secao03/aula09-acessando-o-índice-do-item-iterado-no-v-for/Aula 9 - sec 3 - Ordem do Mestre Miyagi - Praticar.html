@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Produtos</h1>
+        <ul>
+            <li v-for="(produto, indice) in produtos">{{ texto  }}: {{ indice }} - {{ produto }}</li><!--a segunda variável, indice, representa o valor do índice no elemento que está sendo iterado-->
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                texto: 'Produto',
+                produtos: [
+                    'Monitor',
+                    'Teclado',
+                    'Mouse'
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

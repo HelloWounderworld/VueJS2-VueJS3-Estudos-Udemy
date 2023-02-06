@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p>Nome original: {{ curso }}</p>
+        <p>Nome invertido (computed): {{ cursoInvertidoComputed }}</p>
+        <p>Nome invertido (method): {{ cursoInvertidoMethod() }}</p>
+        <p>Autor: {{ nomeDoAutorInteiro ? 'Leonardo Takashi Teramatsu': 'Leonardo' }}</p>
+        <button @click="nomeDoAutorInteiro =! nomeDoAutorInteiro">Alterar nome do autor</button>
+        <br>
+        <input @keyup.enter="alterarNomeDoCurso" placeholder="Alterar Nome do Curso">
+    </div>
+    <!--Basicamente a diferença entre computed properties e methods é que o computed é dependente da variável (no caso do contexto a variável curso) o que significa que o computed será re-executada caso mudemos a variável colocado nela. Já o methods sempre que é chamado será feita uma nova execusão/renderização, ou seja, independente se a variável dentro dela está sendo ou não mudada ela sempre será re-executada. Logo, o ideal é que sempre que possível utilizar o computed do que methods.-->
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                curso: 'Curso de VueJS',
+                nomeDoAutorInteiro: false
+            },
+            computed: {
+                cursoInvertidoComputed: function(){
+                    console.log('Computed');
+                    return this.curso.split('').reverse().join('');
+                }
+            },
+            methods: {
+                alterarNomeDoCurso: function(event){
+                    this.curso = event.target.value;
+                },
+                cursoInvertidoMethod: function(){
+                    console.log('Methods');
+                    return this.curso.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

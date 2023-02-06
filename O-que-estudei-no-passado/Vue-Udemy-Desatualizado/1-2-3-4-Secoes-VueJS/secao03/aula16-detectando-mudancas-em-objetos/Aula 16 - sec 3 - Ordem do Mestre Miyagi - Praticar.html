@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Produtos</h1>
+        <ul>
+            <li v-for="(valor, chave) in produto">{{ chave }}: {{ valor }}</li><!--a segunda variável, indice, representa o valor do índice no elemento que está sendo iterado-->
+        </ul>
+        <button @click="adicionarPropriedade">Adicionar propriedade</button>
+        <button @click="substituirObjeto">Substituir Objeto</button>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                produto: {
+                    id: 2,
+                    nome: 'Teclado',
+                    marca: 'Dell'
+                },
+                usuario: {
+                    nome: '',
+                    idade: 0
+                }
+            },
+            methods: {
+                adicionarPropriedade: function(event){
+                    //this.usuario = {nome: 'Leonardo'};
+                    //this.produto.preco = 100; // Não reativa
+                    //Vue.set(this.produto, 'preco', 100); // Esta forma funciona tbm
+                    this.$set(this.produto, 'preco', 100);
+                },
+                substituirObjeto: function(event){
+                    /*Object.assign(this.produto, {
+                        preco: 50,
+                        cor: 'preta'
+                    });*/ // Não reativo
+                    this.produto = Object.assign({}, this.produto, {
+                        preco: 50,
+                        cor: 'preta'
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

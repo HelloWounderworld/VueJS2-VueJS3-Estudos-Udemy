@@ -1,0 +1,207 @@
+<template>
+    <div>
+
+        <div class="row">
+            <div class="col-sm-10">
+                <h1 class="font-weight-light">Lista de Tarefas</h1>
+            </div>
+            <div class="col-sm-2">
+                <button
+                    class="btn btn-primary float-right"
+                    @click="exibirFormularioCriarTarefa">
+                        <i class="fa fa-plus mr-2"></i>
+                        <span>Criar</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- <h3 class="font-weight-light mt-4">A Fazer {{ $store.getters.tarefasAFazer.length }}</h3>
+
+        <ul class="list-group" v-if="$store.getters.tarefasAFazer.length > 0">
+            <TarefasListaIten
+                v-for="tarefa in $store.getters.tarefasAFazer"
+                :key="tarefa.id"
+                :tarefa="tarefa"
+                @editar="selecionarTarefaParaEdicao" />
+        </ul>
+
+        <p v-else>Nenhuma tarefa a fazer.</p> -->
+
+        <h3 class="font-weight-light mt-4">A Fazer {{ tarefasAFazer.length }}</h3>
+
+        <ul class="list-group" v-if="tarefasAFazer.length > 0">
+            <TarefasListaIten
+                v-for="tarefa in tarefasAFazer"
+                :key="tarefa.id"
+                :tarefa="tarefa"
+                @editar="selecionarTarefaParaEdicao" />
+        </ul>
+
+        <p v-else>Nenhuma tarefa a fazer.</p>
+
+        <!-- <h3 class="font-weight-light mt-4">Concluídas {{ $store.getters.totalDeTarefasConcluidas }}</h3>
+
+        <ul class="list-group" v-if="tarefasConcluidas.length > 0">
+            <TarefasListaIten
+                v-for="tarefa in tarefasConcluidas"
+                :key="tarefa.id"
+                :tarefa="tarefa"
+                @editar="selecionarTarefaParaEdicao" />
+        </ul>
+
+        <p v-else>Nenhuma tarefa foi concluida.</p>
+
+        <TarefaSalvar
+            v-if="exibirFormulario"
+            :tarefa="tarefaSelecionada" /> -->
+
+        <h3 class="font-weight-light mt-4">Concluídas {{ totalDeTarefasConcluidas }}</h3>
+
+        <ul class="list-group" v-if="tarefasConcluidas.length > 0">
+            <TarefasListaIten
+                v-for="tarefa in tarefasConcluidas"
+                :key="tarefa.id"
+                :tarefa="tarefa"
+                @editar="selecionarTarefaParaEdicao" />
+        </ul>
+
+        <p v-else>Nenhuma tarefa foi concluida.</p>
+
+        <TarefaSalvar
+            v-if="exibirFormulario"
+            :tarefa="tarefaSelecionada" />
+
+    </div>
+</template>
+
+<script>
+// Vamos colocar a propriedade tarefas para o state, pois isso nos dará mais praticidade caso formos alterar a tal lista por vários tipos de components
+// No caso, bastaria mapear pelo mapStates como nas outras aulas anteriores
+// Se quisermos separar das tarefas já concluídas e das tarefas a fazer. Nessa situação podemos colocar um novo computed properties que indica as tais tarefas concluídas, tarefasConcluidas
+// Porém, o uso do getters do vuex, resolverá esse problema de forma mais rápido e permitirá que um conjunto de funções sejam utilizadas em qualquer components
+// Vamos aprender a usar os getters nos components
+// No caso, foi visto que nos getters é possível configurar uma função que podemos acessar ela chamando via $store.getters
+// No caso, isso já serve como um indicativo de que eles podem ser utilizadas como components para conseguir melhorar a sua utilidade usando o property-style
+// Assim, como foi feito na tag "A Fazer" e "Concluidas", donde é chamado as funções definidas no getters
+// Existem casos em que as funções definidas em getters precisam ser colocadas algum argumento para elas
+// Entretanto, no formato $store.getters.funcao, não podemos colocar algum argumento dentro dela. No caso, o que possibilitaria na implementação do argumento de alguma função dentro do getters definida que necessita de um argumento para o teu funcionamento
+// seria utilizando o methods-style, donde a tal aplicação está sendo demonstrado a partir da função buscarTarefaPorId definida no store e conectado com o lifecycle hook (created) dentro de TarefaSalvar
+// Assim, como foi feito para o state, podemos acessar as funções getters definidas dentro do store usando o mapGetters, importanto o mapGetters dentro do vuex como feito abaixo
+// Assim, o computed property definida abaixo, tarefasConcluidas, não será mais necessário o eu uso e nem o uso do $store, como foi feito no A Fazer e Concluidos
+// Existe uma outra situação que faz dos estados (state) definido ter a necessidade de alterar ela, seja em colocar algum novo elemento ou objeto, etc...
+// De forma resumida, podemos dizer que existem situações em que é necessário ocorrer alguma mutação no estado (state) deifnido no vuex. Para isso, precisamos agora entender a nova funcionalidade chamado mutations do vuex em store, donde foi definido um objeto listaTarefas e esvaziamos a lista definida no state chamado tarefas
+// Obs: Sempre utilize o mutation para causar alguma alteração no seu estado!!!
+// e chamamos o mutations com $store dentro do lifecycle hook created().
+// Um detalhe importante, é que mutations, diferentemente da forma como foi chamado os getters e states pelo $store, não colocamos o nome mutations em si, mas sim commit como foi aplicado no lifecycle hook abaixo
+// Podemos tbm colocar argumentos dentro de mutations, mas isso srá feito por meio de Payload
+// No caso, dentro lifecycle hook foi definido o payload, que é o segundo argumento definido dentro do commit, e em store, foi definido uma segunda variável na função listaTarefas em mutations (payload), e dentro da função foi chamado o payload definido dentro do commit
+// Tal recurso é conhecido como atribuição ia desestruturação!
+// A essa altura, podemos ver que o state do vuex, cumpre uma função similar ao data() do export default
+// Agora, vamos ver como se faz um commit de mutations com payload em Object Style
+// No caso, no lifecycle hook vamos apagar com a string listarTarefas e deixar comente com o objeto dentro dela
+// E dentro desse objeto definimos o type, donde nela colocamos qual mutation queremos chamar
+// Da mesma forma para getters e state, temos para o mutations o mapMutations que nos permite chamar um conjunto de funções defnidas na mutations, como foi feito abaixo e chamado ela dentro do lifecycle hook
+// Além disso, foi mostrado uma outra funcionalidade de mapMutations utilizando ela no methods, donde foi definido um outro nome, carregarTarefas, para chamar a função definida dentro da funcionalidade mutations em vuex
+import TarefaSalvar from './TarefaSalvar.vue'
+import TarefasListaIten from './TarefasListaIten.vue'
+import { mapGetters, mapMutations, mapState } from 'vuex'
+
+export default {
+  components: {
+    TarefaSalvar,
+    TarefasListaIten
+  },
+  data () {
+    return {
+      exibirFormulario: false,
+      tarefaSelecionada: undefined
+      // tarefas: [
+      //   { id: 1, titulo: 'Aprender Vue', concluido: true },
+      //   { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+      //   { id: 3, titulo: 'Aprender Vuex', concluido: false }
+      // ]
+    }
+  },
+  computed: {
+    ...mapMutations(['listarTarefas']),
+    ...mapState(['tarefas']),
+    ...mapGetters(['tarefasAFazer', 'tarefasConcluidas', 'totalDeTarefasConcluidas'])
+    // tarefasConcluidas () {
+    //   // return this.$store.state.tarefas
+    //   // Pode ser o formato acima ou de baixo, já que a de baixo já tem a instância chamada pelo mapState
+    //   // No caso, o filter ele estará acessando os elementos dentro do objeto tarefas
+    //   // Porem, fazer isso, caso tiver que implementar um conjunto de propriedades não será viável
+    //   // Logo, para isso que existe uma funcionalidade chamada getters do vuex
+    //   return this.tarefas.filter(t => t.concluido)
+    // }
+    // tarefasConcluidas () {
+    //   return this.$store.getters.tarefasConcluidas
+    // }
+  },
+  created () {
+    // Em payload (o segundo argumento do commit), podemos passar diretamente uma lista
+    // this.$store.commit('listarTarefas', {
+    //   tarefas: [
+    //     { id: 1, titulo: 'Aprender Vue', concluido: true },
+    //     { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+    //     { id: 3, titulo: 'Aprender Vuex', concluido: false }
+    //   ]
+    // })
+    // this.$store.commit({
+    //   type: 'listarTarefas',
+    //   tarefas: [
+    //     { id: 1, titulo: 'Aprender Vue', concluido: true },
+    //     { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+    //     { id: 3, titulo: 'Aprender Vuex', concluido: false }
+    //   ]
+    // })
+    // Note que, no this.listarTarefas que é uma das mutações definidas na mutations, não foi necessário definir algum type ou colocar algum argumeto inicial que nem foi feito em commit, que especifica qual função está sendo chamado
+    // O próprio mapMutations, por de baixo dos panos, ele já tem a capacidade de fazer isso
+    // this.listarTarefas({
+    //   tarefas: [
+    //     { id: 1, titulo: 'Aprender Vue', concluido: true },
+    //     { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+    //     { id: 3, titulo: 'Aprender Vuex', concluido: false }
+    //   ]
+    // })
+    // this.carregarTarefas({
+    //   tarefas: [
+    //     { id: 1, titulo: 'Aprender Vue', concluido: true },
+    //     { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+    //     { id: 3, titulo: 'Aprender Vuex', concluido: false }
+    //   ]
+    // })
+    this.listarTarefas({
+      tarefas: [
+        { id: 1, titulo: 'Aprender Vue', concluido: true },
+        { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+        { id: 3, titulo: 'Aprender Vuex', concluido: false }
+      ]
+    })
+  },
+  methods: {
+    // ...mapMutations(['listarTarefas']),
+    ...mapMutations({
+      carregarTarefas: 'listarTarefas',
+      listarTarefas: (commit, payload, options) => {
+        commit('listarTarefas', payload, options)
+      }
+    }),
+    exibirFormularioCriarTarefa (event) {
+      if (this.tarefaSelecionada) {
+        this.tarefaSelecionada = undefined
+        return
+      }
+      this.exibirFormulario = !this.exibirFormulario
+    },
+    selecionarTarefaParaEdicao (tarefa) {
+      this.exibirFormulario = true
+      this.tarefaSelecionada = tarefa
+    },
+    resetar () {
+      this.exibirFormulario = false
+      this.tarefaSelecionada = undefined
+    }
+  }
+}
+</script>

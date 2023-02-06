@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p>Curso: {{ curso }}</p>
+        /*data biding ou a ligação de dados utilizando o que chamamos de interpolação de strings*/
+        /*Agora, será explicado como se faz o data biding de atributos. No caso, vc coloca sem as duas chaves.*/
+        <a v-bind:href="docs">VueJS</a>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                curso: 'VueJS',
+                docs: 'https://vuejs.org'
+            },
+
+        })
+    </script>
+</body>
+</html>

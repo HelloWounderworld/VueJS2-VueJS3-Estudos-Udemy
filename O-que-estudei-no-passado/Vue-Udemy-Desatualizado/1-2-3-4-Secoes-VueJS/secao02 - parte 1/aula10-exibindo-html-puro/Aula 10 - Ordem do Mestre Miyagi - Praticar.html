@@ -1,0 +1,21 @@
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ curso }}</p><!--Isso significa que nenhuma tag em específico dentro da string será ativada. O bom é que isso impede ataques como Cross-site Scripting (XSS)-->
+        <p v-html="curso"></p><!--Tome muito cuidado ao utilizar essa diretriz. Só use-a quando vc tiver 100% de certeza de que o seu site não será hackeado ou não existe tal perigo.-->
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                curso: 'Curso de <span style="color: red">VueJS</span>',
+                curso2: 'Curso de VueJS'
+            }
+        })
+    </script>
+</body>
+</html>

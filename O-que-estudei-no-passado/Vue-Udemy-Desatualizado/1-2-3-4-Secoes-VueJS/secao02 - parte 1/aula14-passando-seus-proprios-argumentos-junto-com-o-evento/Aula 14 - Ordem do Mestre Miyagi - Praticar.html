@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-on:click="onClick('p',$event)">
+            Curso de VueJS
+            <button v-on:click.stop="onClick('button',$event)">Clique</button><!--.stop é a outra forma de impedir a propagação do evento.-->
+        </p>
+
+        <form>
+            <input type="text">
+            <button type="submit" v-on:click="onSubmit">Enviar sem modificador</button>
+            <button type="submit" v-on:click.prevent="onSubmit">Enviar com modificador</button><!--.prevent esse modificador de eventos preserva a ação. Lembremos que os modificadores de eventos podem ser encadeados. A ordem é importante.-->
+        </form>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            methods: {
+                onClick: function (elementoAlvo, event){
+                    console.log(event.type,':',elementoAlvo);
+                },
+                onSubmit: function(event){
+                    console.log('Formuário enviado');
+                }
+            }
+        })
+    </script><!--event.stopPropagation() serve para que o evento incluso dentro de uma div seja restrito somente nele sem surtir efeito dos eventos maiores onde o tal evento esrá incluso.-->
+</body>
+</html>

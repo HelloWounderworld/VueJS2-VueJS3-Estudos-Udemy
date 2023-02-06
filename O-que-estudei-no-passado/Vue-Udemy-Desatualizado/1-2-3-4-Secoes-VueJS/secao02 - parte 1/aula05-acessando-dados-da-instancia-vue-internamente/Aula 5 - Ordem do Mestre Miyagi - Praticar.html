@@ -1,0 +1,26 @@
+<!DOCTYPe html>
+<html>
+<head>
+    <title>VUeJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p>Curso: {{ curso }} | {{ nomeDoInstrutor() }}</p>
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                curso: 'VueJS',
+                instrutor: 'Leonardo Takashi'
+            },
+            methods: {
+                nomeDOInstrutor: function(){
+                    return this.instrutor;/*O uso desse this nos permite acessar os dados internamente de uma instância*/
+                }
+            }
+        })
+    </script>
+</body>
+</html>

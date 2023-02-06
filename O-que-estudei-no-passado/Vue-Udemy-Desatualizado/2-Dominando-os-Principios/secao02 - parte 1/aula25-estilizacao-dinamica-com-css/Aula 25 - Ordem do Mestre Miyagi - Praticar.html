@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+
+    <style>
+        .caixa{
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            margin-right: 10px;
+            background-color: gray;
+        }
+        .coral{
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div 
+            class="caixa"
+            :class="{ coral: aplicarClasse }"
+            @click="aplicarClasse =! aplicarClasse"><!--entender melhor sobre esse click-->
+        </div><!--se for coral-a, esse traço, teria colocar 'coral-a' dentro da interpolação-->
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                aplicarClasse: false
+            }
+        })
+    </script>
+</body>
+</html>

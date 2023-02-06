@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p>Curso: {{ curso }} | {{ instrutor() }}</p>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                curso: 'VueJS'
+            },
+            methods: {
+                instrutor: function(){
+                    return 'Leonardo Takashi Teramatsu';
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+Aula 1 - Para introdução à esse proejto final, é necessário ter uma noção dos seguintes recursos
+
+    - https://v1.prisma.io/docs/1.34/understand-prisma/prisma-introduction-what-why-how-j9ff/#what-is-prisma
+
+    - https://v1.prisma.io/docs/1.34/understand-prisma/prisma-introduction-what-why-how-j9ff/#why-use-prisma
+
+    - https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e
+
+Repositórios dos projetos no github
+
+    - O código fonte final dos projetos da API GraphQL e também da aplicação Client com o Vue podem ser consultados a qualquer momento por meio de seus repositórios no Github.
+
+    - Segue:
+
+        - Back: https://github.com/plinionaves/vue-finances-back-dev
+
+        - Front: https://github.com/plinionaves/vue-finances-front-dev
+
+    - Os commits possuem mensagens muito semelhantes aos títulos das aulas, então caso precisar consultar como estava o código antes e/ou depois de determinada aula, procure um commit com uma mensagem semelhante ao título da aula desejada.
+
+    - PS: IMPORTANTE: estes ainda não são os repositórios oficiais, o código fonte será esse, porém o nome e endereço de acesso aos repos serão alterados assim que eu gravar a seção sobre Deploy, então certifique-se de ficar de olho aqui nesta aula em específico e também nas mensagens do curso para saber quando forem alterados. Estou disponibilizando agora para que você já tenha acesso ao código e possa acompanhar as aulas consultado-os sempre que necessário.
+
+Aula 2 - Guia de instalação do docker - Já está salvo no meu drive
+
+Aula 3 - Precisamos criar um Prisma Server e o banco de dados PostgreSQL para, finalmente, conseguirmos rodar o Docker no local.
+
+    Atualizando o docker-compose: (Seguindo tudo que está em (*))
+        - prismagraphql/prisma: 1.28 -> 1.34
+
+    - https://blog.4linux.com.br/docker-compose-explicado/
+    - https://imasters.com.br/banco-de-dados/docker-compose-o-que-e-para-que-serve-o-que-come
+    - https://learn.microsoft.com/pt-br/visualstudio/docker/tutorials/tutorial-multi-container-app-mysql
+    - https://prensa.li/api-playbook/como-construir-api-com-nestjs-docker-prisma/
+    - https://docs.docker.com/compose/gettingstarted/
+    - https://docs.docker.com/compose/compose-file/compose-versioning/
+    - https://docs.docker.com/compose/compose-file/
+    - https://docs.docker.com/get-docker/
+    - https://docs.docker.com/desktop/mac/permission-requirements/
+    - https://hub.docker.com/r/prismagraphql/prisma (*)
+    - Comando para rodar: docker-compose up -d
+    - Para verficar os diretórios: docker ps
+
+Precisa verificar o que está acontecendo, pois estou seguindo os mesmos passos que é dado na aula, mas não estou conseguindo rodar localmente.
+Problema resolvido. No caso, para poder rodar o docker-compose precisa rodar primeiro o container do docker (docker run -d -p 80:80 docker/getting-started) no terminal
+dentro do diretório que vc está trabalhando para depois de criado o docker-compose.yml rodar o docker-compose up -d pelo terminal
+
+Aula 4 - Vamos precisar instalar o Prisma CLI que é um novo serviço para se conectar ao Prisma Server
+
+    - Bastaria rodar no terminal com o diretório seu aberto o comando npm i -g prisma@1.28 (Mas parece que na hora que fazemos o deploy ocorre uma incompatibilidade e não possibilita a exibição)
+    - Em seguinda rodamos o comando prisma init --endpoint, donde precisamos especificar qual o endpoint que queremos rodar.
+    Como ela está rodando na porta 4466, então bastaríamos acrescentar http://localhost:4466.
+    - Note que, ao rodar o comando acima foi criado dois novos arquivos o datamodel.prisma (GraphQL SDL-based datamodel (foundation for database)) e prisma.yml (Prisma service definition)
+    - No próximo passo, precisamos realizar o deploy para que seja exibida as informações que aparecem no datamodel.prisma. No próprio prisma init --endpoint http://localhost:4466 nela é
+    mostrado isso como o próximo passo:
+    Next steps:
+
+        1. Deploy your Prisma service: prisma deploy
+
+    - Set up a new Prisma project - Visto que foi instalado a última versão do prisma
+
+        Usage
+
+        $ prisma init [options]
+        Options
+
+                -h, --help   Display this help message
+        --datasource-provider   Define the datasource provider to use: postgresql, mysql, sqlite, sqlserver, mongodb or cockroachdb
+                        --url   Define a custom datasource url
+
+        Examples
+
+        Set up a new Prisma project with PostgreSQL (default)
+        $ prisma init
+
+        Set up a new Prisma project and specify MySQL as the datasource provider to use
+        $ prisma init --datasource-provider mysql
+
+        Set up a new Prisma project and specify the url that will be used
+        $ prisma init --url mysql://user:password@localhost:3306/mydb
+
+Se travou em alguma parte até aqui, então assista todas as aulas de novo com mais afinco e passo a passo para verificar onde foi o erro.
