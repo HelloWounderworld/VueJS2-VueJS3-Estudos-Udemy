@@ -22,8 +22,3 @@ Usamos as seguintes extensões para VueJS e para possibilitar que rode os arquiv
 ## Referência para consulta:
 Durante o curso da Udemy, em paralelo, foi lido a documentação, https://br.vuejs.org/v2/guide, de acordo com os conceitos revisados para cada assunto da aula.
 
-### Obrigações:
-Ao final do encerramento de cada seção, realizar uma revisão e criar no readme um relatório dessa revisão de forma clara o que foi aprendido.
-
-### Seção 1 - Iniciando com VueJS:
-O que foi aprendido nessa seção e quais os pontos principais e cruciais?
